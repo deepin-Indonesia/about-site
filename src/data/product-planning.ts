@@ -21,6 +21,9 @@ export const PLANNING_PAGE = {
     'Detail perencanaan disampaikan dari sisi teknis (technical) dan fungsional (functional), sehingga siapa pun dapat memperoleh gambaran awal mengenai arah pengembangan deepin. Halaman ini adalah terjemahan dan penyederhanaan resmi berbahasa Indonesia dari dokumen Product Planning deepin.',
 } as const;
 
+/** Halaman daftar release notes deepin di news.deepin.id. */
+export const RELEASE_NOTES_URL = 'https://news.deepin.id/?tag=release-notes';
+
 /** Tabel jadwal rilis (release schedule). */
 export const RELEASE_SCHEDULE: ReleaseScheduleItem[] = [
   {
@@ -47,6 +50,8 @@ export const RELEASE_SCHEDULE: ReleaseScheduleItem[] = [
     dateTime: '2026-04',
     status: 'released',
     statusLabel: 'Sudah dirilis',
+    // Belum ada artikel khusus deepin 25.1.0; arahkan ke daftar release notes.
+    url: RELEASE_NOTES_URL,
   },
 ];
 
@@ -172,8 +177,6 @@ export const PLAN_HIGHLIGHTS = [
 /** Catatan penting / disclaimer resmi. */
 export const PLAN_DISCLAIMER =
   'Rencana fitur inti yang diuraikan di atas dapat berbeda dari konten versi final. Untuk detail fitur, silakan merujuk ke release notes deepin yang akan diperbarui setelah versi resmi dirilis. Fitur baru dan item optimasi spesifik mengikuti release notes final.';
-
-export const RELEASE_NOTES_URL = 'https://news.deepin.id/?tag=release-notes';
 
 /** FAQ untuk rich result (FAQPage) sekaligus membantu pembaca. */
 export const FAQ_ITEMS: FaqItem[] = [

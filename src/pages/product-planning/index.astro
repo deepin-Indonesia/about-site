@@ -269,12 +269,14 @@ const softwareSchema = {
                   </td>
                   <td class="px-6 py-5 text-right">
                     {release.url ? (
-                      <a href={release.url} class="inline-flex items-center gap-1.5 text-sm font-semibold text-deepin-600 hover:text-deepin-800 transition-colors">
-                        Baca <i class="fas fa-arrow-right text-[10px]" aria-hidden="true" />
-                      </a>
-                    ) : release.status === 'released' ? (
-                      <a href={RELEASE_NOTES_URL} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-semibold text-deepin-600 hover:text-deepin-800 transition-colors">
-                        Release notes <i class="fas fa-external-link-alt text-[10px]" aria-hidden="true" />
+                      <a
+                        href={release.url}
+                        target="_blank"
+                        rel="noopener"
+                        title={`Baca release notes ${release.version}`}
+                        class="inline-flex items-center gap-1.5 text-sm font-semibold text-deepin-600 hover:text-deepin-800 transition-colors"
+                      >
+                        Baca release notes <i class="fas fa-external-link-alt text-[10px]" aria-hidden="true" />
                       </a>
                     ) : (
                       <span class="text-sm text-gray-400">Belum tersedia</span>
@@ -305,13 +307,14 @@ const softwareSchema = {
                 <time datetime={release.dateTime}>{release.timeline}</time>
               </p>
               {release.url && (
-                <a href={release.url} class="inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-deepin-600 hover:text-deepin-800 transition-colors">
-                  Baca release notes <i class="fas fa-arrow-right text-[10px]" aria-hidden="true" />
-                </a>
-              )}
-              {!release.url && release.status === 'released' && (
-                <a href={RELEASE_NOTES_URL} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-deepin-600 hover:text-deepin-800 transition-colors">
-                  Release notes <i class="fas fa-external-link-alt text-[10px]" aria-hidden="true" />
+                <a
+                  href={release.url}
+                  target="_blank"
+                  rel="noopener"
+                  title={`Baca release notes ${release.version}`}
+                  class="inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-deepin-600 hover:text-deepin-800 transition-colors"
+                >
+                  Baca release notes <i class="fas fa-external-link-alt text-[10px]" aria-hidden="true" />
                 </a>
               )}
             </article>
