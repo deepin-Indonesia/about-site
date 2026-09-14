@@ -1,0 +1,23 @@
+# Redirect URL lama menuju struktur baru di about.deepin.id
+
+# Product Planning (URL lama gaya deepin.org)
+/en/developer-community/planning/*  /product-planning/  301
+/en/developer-community/planning  /product-planning/  301
+/tentang-deepin/product-planning/*  /product-planning/  301
+/tentang-deepin/product-planning  /product-planning/  301
+/planning  /product-planning/  301
+
+# Original Apps (placeholder untuk halaman berikutnya)
+/en/original-applications/*  /original-apps/  301
+/en/original-applications  /original-apps/  301
+/tentang-deepin/original-apps/*  /original-apps/  301
+/tentang-deepin/original-apps  /original-apps/  301
+
+# Desktop Environment (placeholder untuk halaman berikutnya)
+/en/dde/*  /desktop-environment/  301
+/en/dde  /desktop-environment/  301
+/tentang-deepin/desktop-environment/*  /desktop-environment/  301
+/tentang-deepin/desktop-environment  /desktop-environment/  301
+
+# deepin Indonesia diarahkan ke situs utama
+/tentang-deepin-id/*  https://deepin.id/  301

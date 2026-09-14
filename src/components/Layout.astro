@@ -1,0 +1,197 @@
+---
+import '@/styles/global.css';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { SITE } from '@/data/site';
+import type { Breadcrumb } from '@/types';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  keywords?: string[];
+  /** Tandai halaman agar tidak diindeks mesin pencari (mis. halaman 404). */
+  noindex?: boolean;
+  /** Structured data tambahan (mis. FAQPage, TechArticle). */
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  breadcrumbs?: Breadcrumb[];
+}
+
+const {
+  title,
+  description = SITE.description,
+  image = '/images/deepin-id.png',
+  keywords = [],
+  noindex = false,
+  schema,
+  breadcrumbs = [] as Breadcrumb[],
+} = Astro.props;
+
+const pageTitle = title ? `${title} — ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
+const canonicalUrl = new URL(Astro.url.pathname.replace(/\/+$/, '') + '/', SITE.url).href;
+const ogImage = new URL(image, SITE.url).href;
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'deepin Indonesia',
+  url: 'https://deepin.id',
+  logo: new URL('/images/deepin-id.png', SITE.url).href,
+  email: SITE.email,
+  founder: { '@type': 'Person', name: 'Zaky NR' },
+  description: SITE.tagline,
+  sameAs: [SITE.social.telegram, SITE.social.github, SITE.social.youtube],
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  alternateName: 'deepin Indonesia — Tentang deepin',
+  url: SITE.url,
+  inLanguage: 'id-ID',
+  publisher: { '@type': 'Organization', name: 'deepin Indonesia' },
+};
+
+const breadcrumbSchema =
+  breadcrumbs.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbs.map((crumb: Breadcrumb, index: number) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: crumb.name,
+          item: new URL(crumb.url, SITE.url).href,
+        })),
+      }
+    : null;
+
+const extraSchemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const allSchemas = [organizationSchema, websiteSchema, ...(breadcrumbSchema ? [breadcrumbSchema] : []), ...extraSchemas];
+---
+
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1a6dd4" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/images/deepin-id.png" />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="deepin Indonesia" />
+    <meta name="publisher" content="deepin Indonesia" />
+    <meta
+      name="robots"
+      content={noindex
+        ? 'noindex, follow'
+        : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}
+    />
+    {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="id-ID" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={pageTitle} />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content={SITE.name} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@deepinID" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- JSON-LD -->
+    {allSchemas.map((item) => (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(item)} />
+    ))}
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      media="print"
+      onload="this.media='all'"
+    />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2J4TLB9W7H"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-2J4TLB9W7H');
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- Scroll to Top Button -->
+    <button
+      id="scroll-top"
+      class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-white border-2 border-gray-300 shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-gray-100 hover:-translate-y-1 hover:border-deepin-400"
+      aria-label="Kembali ke atas"
+    >
+      <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="17" fill="none" stroke="#e5e7eb" stroke-width="3" />
+        <circle
+          id="scroll-progress"
+          cx="20"
+          cy="20"
+          r="17"
+          fill="none"
+          stroke="#1a6dd4"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-dasharray="106.8"
+          stroke-dashoffset="106.8"
+        />
+      </svg>
+      <i class="fas fa-chevron-up text-deepin-600 text-base relative z-10" />
+    </button>
+
+    <script>
+      const btn = document.getElementById('scroll-top')!;
+      const circle = document.getElementById('scroll-progress')!;
+      const circumference = 106.8;
+
+      function update() {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = scrollable > 0 ? window.scrollY / scrollable : 0;
+        if (window.scrollY > 400) {
+          btn.classList.remove('opacity-0', 'invisible');
+        } else {
+          btn.classList.add('opacity-0', 'invisible');
+        }
+        circle.style.strokeDashoffset = String(circumference - scrollPercent * circumference);
+      }
+
+      window.addEventListener('scroll', update, { passive: true });
+      btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    </script>
+  </body>
+</html>

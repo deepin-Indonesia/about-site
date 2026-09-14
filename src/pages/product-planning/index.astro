@@ -1,0 +1,458 @@
+---
+import Layout from '@/components/Layout.astro';
+import { SITE } from '@/data/site';
+import {
+  PLANNING_PAGE,
+  RELEASE_SCHEDULE,
+  NEXT_RELEASE,
+  PLAN_CATEGORIES,
+  PLAN_HIGHLIGHTS,
+  PLAN_DISCLAIMER,
+  RELEASE_NOTES_URL,
+  FAQ_ITEMS,
+} from '@/data/product-planning';
+import type { ReleaseStatus } from '@/types';
+
+const canonicalUrl = new URL('/product-planning/', SITE.url).href;
+
+const statusStyles: Record<ReleaseStatus, { badge: string; dot: string; icon: string }> = {
+  released: {
+    badge: 'bg-green-50 text-green-700 border-green-200',
+    dot: 'bg-green-500',
+    icon: 'fa-circle-check',
+  },
+  planned: {
+    badge: 'bg-deepin-50 text-deepin-700 border-deepin-200',
+    dot: 'bg-deepin-500 animate-pulse',
+    icon: 'fa-hourglass-half',
+  },
+  'in-progress': {
+    badge: 'bg-amber-50 text-amber-700 border-amber-200',
+    dot: 'bg-amber-500 animate-pulse',
+    icon: 'fa-spinner',
+  },
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://deepin.id/' },
+  { name: 'Tentang deepin', url: '/' },
+  { name: 'Product Planning', url: '/product-planning/' },
+];
+
+const totalFeatures = PLAN_CATEGORIES.reduce((sum, category) => sum + category.items.length, 0);
+
+const techArticleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: 'Product Planning deepin — Roadmap Versi & Rencana Fitur deepin 25.3.0',
+  description:
+    'Rencana pengembangan resmi deepin untuk versi berikutnya: jadwal rilis, pembaruan fitur, sistem & ekosistem, serta peningkatan kegunaan pada deepin 25.3.0.',
+  inLanguage: 'id-ID',
+  image: new URL('/images/deepin25/desktop.png', SITE.url).href,
+  datePublished: PLANNING_PAGE.updated,
+  dateModified: PLANNING_PAGE.updated,
+  author: { '@type': 'Organization', name: 'deepin Indonesia', url: SITE.url },
+  publisher: {
+    '@type': 'Organization',
+    name: 'deepin Indonesia',
+    logo: { '@type': 'ImageObject', url: new URL('/images/deepin-id.png', SITE.url).href },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+  about: [
+    { '@type': 'SoftwareApplication', name: 'deepin', applicationCategory: 'Operating System' },
+    { '@type': 'Thing', name: 'Product Planning' },
+    { '@type': 'Thing', name: 'Deepin 25.3.0' },
+  ],
+  keywords:
+    'product planning deepin, roadmap deepin, deepin 25.3.0, jadwal rilis deepin, rencana fitur deepin, UOS AI, Treeland, Linyaps, Immutable System',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ_ITEMS.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'deepin',
+  alternateName: 'deepin Operating System',
+  applicationCategory: 'OperatingSystem',
+  operatingSystem: 'Linux',
+  softwareVersion: NEXT_RELEASE.version.replace('deepin ', ''),
+  releaseNotes: RELEASE_NOTES_URL,
+  inLanguage: 'id-ID',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'IDR' },
+  publisher: { '@type': 'Organization', name: 'deepin Indonesia' },
+};
+---
+
+<Layout
+  title="Product Planning — Roadmap & Rencana Fitur deepin 25.3.0"
+  description="Product Planning resmi deepin: simak jadwal rilis (release schedule) deepin 25.1.0, 25.2.0, dan 25.3.0, plus rencana fitur UOS AI, System Manager, Immutable System, Linyaps, dan Treeland."
+  image="/images/deepin25/desktop.png"
+  keywords={[
+    'product planning deepin',
+    'roadmap deepin',
+    'deepin 25.3.0',
+    'jadwal rilis deepin',
+    'release schedule deepin',
+    'rencana fitur deepin',
+    'UOS AI',
+    'System Manager',
+    'Treeland',
+    'Linyaps',
+    'Immutable System',
+    'deepin Indonesia',
+  ]}
+  breadcrumbs={breadcrumbs}
+  schema={[techArticleSchema, faqSchema, softwareSchema]}
+>
+  <!-- ================= HERO ================= -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-gray-900 via-slate-800 to-deepin-900">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div class="absolute -top-40 -right-40 w-[600px] h-[600px] bg-deepin-600/20 rounded-full blur-[120px]" />
+      <div class="absolute -bottom-20 left-1/4 w-[400px] h-[400px] bg-deepin-400/10 rounded-full blur-[100px]" />
+    </div>
+
+    <div class="container-main relative pt-12 pb-16 lg:pt-16 lg:pb-20">
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="mb-8">
+        <ol class="flex flex-wrap items-center gap-2 text-xs text-gray-400">
+          <li><a href="https://deepin.id" class="hover:text-deepin-300 transition-colors">Home</a></li>
+          <li aria-hidden="true"><i class="fas fa-angle-right text-[10px] opacity-50" /></li>
+          <li><a href="/" class="hover:text-deepin-300 transition-colors">Tentang deepin</a></li>
+          <li aria-hidden="true"><i class="fas fa-angle-right text-[10px] opacity-50" /></li>
+          <li><span class="text-deepin-300 font-medium" aria-current="page">Product Planning</span></li>
+        </ol>
+      </nav>
+
+      <div class="grid lg:grid-cols-3 gap-10 items-start">
+        <div class="lg:col-span-2">
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-deepin-200 text-xs font-semibold tracking-wide uppercase mb-5 backdrop-blur-sm">
+            <span class="w-2 h-2 rounded-full bg-deepin-400 animate-pulse" />
+            {PLANNING_PAGE.tagline}
+          </span>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+            Product Planning
+            <span class="block text-deepin-400">{NEXT_RELEASE.version}</span>
+          </h1>
+
+          <p class="mt-5 text-base sm:text-lg text-gray-300 leading-relaxed max-w-2xl">
+            {PLANNING_PAGE.intro}
+          </p>
+          <p class="mt-4 text-sm sm:text-base text-gray-400 leading-relaxed max-w-2xl">
+            {PLANNING_PAGE.introDetail}
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-8">
+            <a href="#jadwal-rilis" class="btn-primary text-sm px-6 py-3 !rounded-xl justify-center">
+              <i class="fas fa-calendar-days text-xs" /> Lihat Jadwal Rilis
+            </a>
+            <a href="#rencana-fitur" class="btn-outline text-sm px-6 py-3 !rounded-xl justify-center">
+              <i class="fas fa-list-check text-xs" /> Rencana Fitur
+            </a>
+          </div>
+        </div>
+
+        <!-- Ringkasan cepat -->
+        <aside class="lg:col-span-1 w-full">
+          <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6">
+            <h2 class="text-xs font-bold text-deepin-200 uppercase tracking-wider mb-4">
+              Ringkasan Rilis Berikutnya
+            </h2>
+            <dl class="space-y-4 text-sm">
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-gray-400">Versi</dt>
+                <dd class="text-white font-semibold text-right">{NEXT_RELEASE.version}</dd>
+              </div>
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-gray-400">Target</dt>
+                <dd class="text-white font-semibold text-right">
+                  <time datetime={NEXT_RELEASE.dateTime}>{NEXT_RELEASE.timeline}</time>
+                </dd>
+              </div>
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-gray-400">Status</dt>
+                <dd class="text-right">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-deepin-500/20 text-deepin-200 text-xs font-semibold border border-deepin-400/30">
+                    <i class="fas fa-hourglass-half text-[10px]" /> {NEXT_RELEASE.statusLabel}
+                  </span>
+                </dd>
+              </div>
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-gray-400">Area Fokus</dt>
+                <dd class="text-white font-semibold text-right">{PLAN_CATEGORIES.length} kategori</dd>
+              </div>
+              <div class="flex items-start justify-between gap-4">
+                <dt class="text-gray-400">Rencana Item</dt>
+                <dd class="text-white font-semibold text-right">{totalFeatures} pembaruan</dd>
+              </div>
+            </dl>
+            <p class="mt-5 pt-4 border-t border-white/10 text-[11px] text-gray-500 leading-relaxed">
+              Terakhir diperbarui:{' '}
+              <time datetime={PLANNING_PAGE.updated} class="text-gray-400">{PLANNING_PAGE.updatedLabel}</time>
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HIGHLIGHTS ================= -->
+  <section class="py-8 bg-deepin-50 border-b border-deepin-100" aria-label="Sorotan rencana deepin 25.3.0">
+    <div class="container-main">
+      <ul class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+        {PLAN_HIGHLIGHTS.map((item) => (
+          <li class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white border border-deepin-100 text-xs sm:text-sm font-medium text-deepin-800 shadow-sm">
+            <i class={`fas ${item.icon} text-deepin-500 text-xs`} aria-hidden="true" />
+            {item.label}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= JADWAL RILIS ================= -->
+  <section id="jadwal-rilis" class="py-20 bg-white scroll-mt-24" aria-labelledby="jadwal-rilis-title">
+    <div class="container-main">
+      <div class="text-center mb-14 max-w-3xl mx-auto">
+        <span class="section-eyebrow">
+          <i class="fas fa-calendar-days text-[10px]" aria-hidden="true" /> Release Schedule
+        </span>
+        <h2 id="jadwal-rilis-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900">
+          Jadwal Rilis <span class="text-deepin-600">deepin</span>
+        </h2>
+        <p class="mt-4 text-gray-500 leading-relaxed">
+          Timeline rilis deepin 2026. Status diperbarui mengikuti pengumuman resmi tim deepin, dan
+          detail setiap versi dirujuk ke release notes saat versi resmi diluncurkan.
+        </p>
+      </div>
+
+      <!-- Tabel desktop -->
+      <div class="hidden md:block overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
+        <table class="w-full text-left border-collapse">
+          <caption class="sr-only">Jadwal rilis versi deepin beserta statusnya</caption>
+          <thead>
+            <tr class="bg-gray-50 border-b border-gray-200">
+              <th scope="col" class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Version Name</th>
+              <th scope="col" class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Timeline</th>
+              <th scope="col" class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Status</th>
+              <th scope="col" class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">Release Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {RELEASE_SCHEDULE.map((release) => {
+              const style = statusStyles[release.status];
+              return (
+                <tr class:list={['border-b border-gray-100 last:border-0 transition-colors', release.status === 'planned' ? 'bg-deepin-50/40' : 'hover:bg-gray-50']}>
+                  <th scope="row" class="px-6 py-5 font-semibold text-gray-900 whitespace-nowrap">
+                    <span class="inline-flex items-center gap-2">
+                      <i class={`fas ${release.status === 'planned' ? 'fa-rocket' : 'fa-circle-check'} text-xs ${release.status === 'planned' ? 'text-deepin-500' : 'text-green-500'}`} aria-hidden="true" />
+                      {release.version}
+                    </span>
+                  </th>
+                  <td class="px-6 py-5 text-sm text-gray-600 whitespace-nowrap">
+                    <time datetime={release.dateTime}>{release.timeline}</time>
+                  </td>
+                  <td class="px-6 py-5">
+                    <span class:list={['inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border', style.badge]}>
+                      <span class:list={['w-1.5 h-1.5 rounded-full', style.dot]} aria-hidden="true" />
+                      {release.statusLabel}
+                    </span>
+                  </td>
+                  <td class="px-6 py-5 text-right">
+                    {release.url ? (
+                      <a href={release.url} class="inline-flex items-center gap-1.5 text-sm font-semibold text-deepin-600 hover:text-deepin-800 transition-colors">
+                        Baca <i class="fas fa-arrow-right text-[10px]" aria-hidden="true" />
+                      </a>
+                    ) : release.status === 'released' ? (
+                      <a href={RELEASE_NOTES_URL} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-semibold text-deepin-600 hover:text-deepin-800 transition-colors">
+                        Release notes <i class="fas fa-external-link-alt text-[10px]" aria-hidden="true" />
+                      </a>
+                    ) : (
+                      <span class="text-sm text-gray-400">Belum tersedia</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Kartu mobile -->
+      <div class="md:hidden space-y-4">
+        {RELEASE_SCHEDULE.map((release) => {
+          const style = statusStyles[release.status];
+          return (
+            <article class:list={['card p-5', release.status === 'planned' ? 'border-deepin-200 bg-deepin-50/40' : '']}>
+              <div class="flex items-start justify-between gap-3 mb-3">
+                <h3 class="font-bold text-gray-900">{release.version}</h3>
+                <span class:list={['inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold border shrink-0', style.badge]}>
+                  <span class:list={['w-1.5 h-1.5 rounded-full', style.dot]} aria-hidden="true" />
+                  {release.statusLabel}
+                </span>
+              </div>
+              <p class="text-sm text-gray-600">
+                <i class="far fa-calendar text-xs text-gray-400 mr-1.5" aria-hidden="true" />
+                <time datetime={release.dateTime}>{release.timeline}</time>
+              </p>
+              {release.url && (
+                <a href={release.url} class="inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-deepin-600 hover:text-deepin-800 transition-colors">
+                  Baca release notes <i class="fas fa-arrow-right text-[10px]" aria-hidden="true" />
+                </a>
+              )}
+              {!release.url && release.status === 'released' && (
+                <a href={RELEASE_NOTES_URL} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-deepin-600 hover:text-deepin-800 transition-colors">
+                  Release notes <i class="fas fa-external-link-alt text-[10px]" aria-hidden="true" />
+                </a>
+              )}
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RENCANA FITUR ================= -->
+  <section id="rencana-fitur" class="py-20 bg-gray-50 scroll-mt-24" aria-labelledby="rencana-fitur-title">
+    <div class="container-main">
+      <div class="text-center mb-14 max-w-3xl mx-auto">
+        <span class="section-eyebrow">
+          <i class="fas fa-list-check text-[10px]" aria-hidden="true" /> Version Plan
+        </span>
+        <h2 id="rencana-fitur-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900">
+          Rencana Versi <span class="text-deepin-600">{NEXT_RELEASE.version}</span>
+        </h2>
+        <p class="mt-4 text-gray-500 leading-relaxed">
+          Sasaran pengembangan disusun dalam tiga area: pembaruan fitur, sistem & ekosistem, serta
+          peningkatan kegunaan. Setiap poin menjaga istilah teknis dalam Bahasa Inggris agar konsisten
+          dengan dokumentasi resmi.
+        </p>
+      </div>
+
+      <div class="space-y-8">
+        {PLAN_CATEGORIES.map((category, index) => (
+          <article id={category.id} class="scroll-mt-24">
+            <!-- Category header -->
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-12 h-12 rounded-2xl bg-deepin-600 flex items-center justify-center shrink-0 shadow-lg shadow-deepin-600/20">
+                <i class={`fas ${category.icon} text-lg text-white`} aria-hidden="true" />
+              </div>
+              <div>
+                <p class="text-[11px] font-bold text-deepin-600 uppercase tracking-wider">
+                  {String(index + 1).padStart(2, '0')} · {category.technicalTitle}
+                </p>
+                <h3 class="text-xl sm:text-2xl font-extrabold text-gray-900 leading-tight">
+                  {category.title}
+                </h3>
+                <p class="text-sm text-gray-500 mt-1 max-w-2xl leading-relaxed">{category.description}</p>
+              </div>
+            </div>
+
+            <!-- Items -->
+            <div class:list={['grid gap-5', category.items.length > 2 ? 'md:grid-cols-2' : 'md:grid-cols-1']}>
+              {category.items.map((item) => (
+                <div class="card p-6 group hover:-translate-y-1 transition-all duration-300">
+                  <div class="flex items-start gap-3 mb-3">
+                    <i class="fas fa-circle-check text-deepin-500 text-sm mt-1 shrink-0" aria-hidden="true" />
+                    <h4 class="font-bold text-gray-900 leading-snug">{item.title}</h4>
+                  </div>
+                  <p class="text-sm text-gray-600 leading-relaxed pl-6">{item.description}</p>
+                  {item.tags && item.tags.length > 0 && (
+                    <ul class="flex flex-wrap gap-1.5 mt-4 pl-6">
+                      {item.tags.map((tag) => (
+                        <li class="px-2.5 py-1 rounded-md bg-gray-100 text-gray-600 text-[11px] font-medium font-mono">
+                          {tag}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Disclaimer -->
+      <aside class="mt-10 rounded-2xl border border-amber-200 bg-amber-50 p-6 flex items-start gap-4" role="note">
+        <i class="fas fa-triangle-exclamation text-amber-500 text-lg mt-0.5 shrink-0" aria-hidden="true" />
+        <div>
+          <h3 class="font-bold text-amber-900 text-sm mb-1.5">Catatan Penting</h3>
+          <p class="text-sm text-amber-800 leading-relaxed">
+            {PLAN_DISCLAIMER}
+          </p>
+          <a
+            href={RELEASE_NOTES_URL}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-amber-900 hover:text-amber-950 underline decoration-amber-400 underline-offset-2 transition-colors"
+          >
+            Lihat release notes deepin <i class="fas fa-external-link-alt text-[10px]" aria-hidden="true" />
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section id="faq" class="py-20 bg-white scroll-mt-24" aria-labelledby="faq-title">
+    <div class="container-main max-w-3xl">
+      <div class="text-center mb-12">
+        <span class="section-eyebrow">
+          <i class="fas fa-circle-question text-[10px]" aria-hidden="true" /> FAQ
+        </span>
+        <h2 id="faq-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900">
+          Pertanyaan <span class="text-deepin-600">Umum</span>
+        </h2>
+        <p class="mt-4 text-gray-500 leading-relaxed">
+          Hal-hal yang paling sering ditanyakan seputar product planning dan jadwal rilis deepin.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        {FAQ_ITEMS.map((item) => (
+          <details class="group rounded-2xl border border-gray-200 overflow-hidden bg-white hover:border-deepin-200 transition-colors">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer px-5 py-4 font-semibold text-gray-900 text-sm hover:bg-gray-50 [&::-webkit-details-marker]:hidden">
+              <span>{item.question}</span>
+              <i class="fas fa-chevron-down text-xs text-gray-400 shrink-0 group-open:rotate-180 transition-transform" aria-hidden="true" />
+            </summary>
+            <div class="px-5 pb-5 pt-1 text-sm text-gray-600 leading-relaxed border-t border-gray-100">
+              {item.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="py-20 bg-gradient-to-br from-deepin-700 to-deepin-900 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(96,165,250,0.15)_0%,transparent_50%)]" aria-hidden="true" />
+    <div class="container-main relative text-center">
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+        Ikuti Perkembangan <span class="text-deepin-300">deepin</span>
+      </h2>
+      <p class="text-deepin-200 text-base sm:text-lg mb-8 max-w-xl mx-auto leading-relaxed">
+        Rencana di atas dapat berubah sebelum rilis final. Baca release notes resmi atau bergabung
+        dengan komunitas untuk mendapat kabar terbaru lebih dulu.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href={RELEASE_NOTES_URL} target="_blank" rel="noopener" class="btn-primary text-base px-8 py-4 !rounded-xl !bg-white !text-deepin-700 hover:!bg-gray-100 w-full sm:w-auto justify-center">
+          <i class="fas fa-file-lines" /> Baca Release Notes
+        </a>
+        <a href="https://t.me/Linux_deepin_ID" target="_blank" rel="noopener" class="btn-outline text-base px-8 py-4 !rounded-xl w-full sm:w-auto justify-center">
+          <i class="fab fa-telegram-plane" /> Gabung Komunitas
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
