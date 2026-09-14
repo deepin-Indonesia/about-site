@@ -108,73 +108,80 @@ const aboutChildren = ABOUT_NAV[0].children ?? [];
       <span class="block w-6 h-0.5 bg-gray-700 rounded transition-transform origin-center menu-bar" />
     </button>
   </nav>
-
-  <!-- Mobile Menu -->
-  <div class="hidden lg:hidden fixed inset-0 top-[72px] bg-white z-40 overflow-y-auto" id="mobile-menu">
-    <div class="container-main py-6 space-y-2">
-      {MAIN_NAV.map((item) =>
-        item.children ? (
-          <details class="group">
-            <summary class="flex items-center justify-between py-3 px-4 rounded-xl text-gray-800 font-medium cursor-pointer hover:bg-gray-50">
-              {item.title}
-              <i class="fas fa-chevron-down text-xs opacity-40 group-open:rotate-180 transition-transform" />
-            </summary>
-            <div class="ml-4 mt-1 space-y-1">
-              {item.children.map((child) => (
-                <a href={child.url} class="block py-2.5 px-4 rounded-lg text-sm text-gray-600 hover:bg-gray-50">
-                  {child.title}
-                </a>
-              ))}
-            </div>
-          </details>
-        ) : item.external ? (
-          <a href={item.url} class="block py-3 px-4 rounded-xl text-gray-800 font-medium hover:bg-gray-50" target="_blank" rel="noopener">
-            {item.title}
-          </a>
-        ) : (
-          <a href={item.url} class="block py-3 px-4 rounded-xl text-gray-800 font-medium hover:bg-gray-50">
-            {item.title}
-          </a>
-        )
-      )}
-
-      <!-- Tentang deepin -->
-      <details class="group" open>
-        <summary class="flex items-center justify-between py-3 px-4 rounded-xl text-gray-800 font-medium cursor-pointer hover:bg-gray-50">
-          Tentang deepin
-          <i class="fas fa-chevron-down text-xs opacity-40 group-open:rotate-180 transition-transform" />
-        </summary>
-        <div class="ml-4 mt-1 space-y-1">
-          {aboutChildren.map((child) => (
-            <a
-              href={child.url}
-              target={child.external ? '_blank' : undefined}
-              rel={child.external ? 'noopener' : undefined}
-              aria-current={isActive(child.url) ? 'page' : undefined}
-              class:list={[
-                'block py-2.5 px-4 rounded-lg text-sm hover:bg-gray-50',
-                isActive(child.url)
-                  ? 'text-deepin-600 font-semibold bg-deepin-50'
-                  : child.highlight
-                    ? 'text-deepin-600 font-semibold'
-                    : 'text-gray-600',
-              ]}
-            >
-              {child.title}
-            </a>
-          ))}
-        </div>
-      </details>
-
-      <a href="https://donasi.deepin.id" class="flex items-center justify-center gap-2 mt-4 py-3 px-4 rounded-xl bg-deepin-600 text-white font-semibold">
-        <i class="fas fa-heart text-sm" /> Donasi
-      </a>
-    </div>
-  </div>
-
-  <!-- Backdrop -->
-  <div class="hidden lg:hidden fixed inset-0 top-[72px] bg-black/30 z-30" id="menu-backdrop"></div>
 </header>
+
+<!--
+  Menu mobile & backdrop sengaja diletakkan DI LUAR <header>.
+  Penyebab: <header> memakai `backdrop-blur-xl` (backdrop-filter), dan properti
+  backdrop-filter membuat elemen menjadi containing block bagi semua
+  `position: fixed` di dalamnya. Akibatnya `fixed inset-0 top-[72px]` mengacu ke
+  tinggi header (~74px), bukan ke viewport, sehingga panel menu kolaps jadi ~0px
+  dan tidak terlihat saat tombol hamburger diklik.
+-->
+<div class="hidden lg:hidden fixed inset-x-0 top-18 bottom-0 bg-white z-40 overflow-y-auto" id="mobile-menu">
+  <div class="container-main py-6 space-y-2">
+    {MAIN_NAV.map((item) =>
+      item.children ? (
+        <details class="group">
+          <summary class="flex items-center justify-between py-3 px-4 rounded-xl text-gray-800 font-medium cursor-pointer hover:bg-gray-50">
+            {item.title}
+            <i class="fas fa-chevron-down text-xs opacity-40 group-open:rotate-180 transition-transform" />
+          </summary>
+          <div class="ml-4 mt-1 space-y-1">
+            {item.children.map((child) => (
+              <a href={child.url} class="block py-2.5 px-4 rounded-lg text-sm text-gray-600 hover:bg-gray-50">
+                {child.title}
+              </a>
+            ))}
+          </div>
+        </details>
+      ) : item.external ? (
+        <a href={item.url} class="block py-3 px-4 rounded-xl text-gray-800 font-medium hover:bg-gray-50" target="_blank" rel="noopener">
+          {item.title}
+        </a>
+      ) : (
+        <a href={item.url} class="block py-3 px-4 rounded-xl text-gray-800 font-medium hover:bg-gray-50">
+          {item.title}
+        </a>
+      )
+    )}
+
+    <!-- Tentang deepin -->
+    <details class="group" open>
+      <summary class="flex items-center justify-between py-3 px-4 rounded-xl text-gray-800 font-medium cursor-pointer hover:bg-gray-50">
+        Tentang deepin
+        <i class="fas fa-chevron-down text-xs opacity-40 group-open:rotate-180 transition-transform" />
+      </summary>
+      <div class="ml-4 mt-1 space-y-1">
+        {aboutChildren.map((child) => (
+          <a
+            href={child.url}
+            target={child.external ? '_blank' : undefined}
+            rel={child.external ? 'noopener' : undefined}
+            aria-current={isActive(child.url) ? 'page' : undefined}
+            class:list={[
+              'block py-2.5 px-4 rounded-lg text-sm hover:bg-gray-50',
+              isActive(child.url)
+                ? 'text-deepin-600 font-semibold bg-deepin-50'
+                : child.highlight
+                  ? 'text-deepin-600 font-semibold'
+                  : 'text-gray-600',
+            ]}
+          >
+            {child.title}
+          </a>
+        ))}
+      </div>
+    </details>
+
+    <a href="https://donasi.deepin.id" class="flex items-center justify-center gap-2 mt-4 py-3 px-4 rounded-xl bg-deepin-600 text-white font-semibold">
+      <i class="fas fa-heart text-sm" /> Donasi
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div class="hidden lg:hidden fixed inset-0 bg-black/30 z-30" id="menu-backdrop"></div>
 
 <script>
   const toggle = document.getElementById('menu-toggle')!;
