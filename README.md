@@ -5,13 +5,14 @@ Situs statis **Tentang deepin** untuk komunitas deepin Indonesia, dibangun denga
 
 - **Produksi:** <https://about.deepin.id>
 - **Halaman:** `/` (landing Tentang deepin), `/product-planning/`
+- **Analytics:** Google Analytics 4 (`G-2J4TLB9W7H`) via `Analytics.astro`
 - **Deploy:** Cloudflare Pages, branch `main`
 
 ## Struktur
 
 ```
 src/
-├── components/        Header, Footer, Layout
+├── components/        Header, Footer, Layout, Analytics
 ├── data/
 │   ├── site.ts        Konfigurasi situs, navigasi
 │   └── product-planning.ts   Konten product planning (roadmap & rencana fitur)
