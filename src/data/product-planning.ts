@@ -18,7 +18,7 @@ export const PLANNING_PAGE = {
   intro:
     'Agar pengguna komunitas selalu mendapat informasi terbaru mengenai roadmap versi Sistem Operasi deepin (selanjutnya disebut "deepin"), tim deepin mengumumkan rencana sasaran (planned objectives) untuk versi pre-release berikutnya sebelum versi tersebut diluncurkan.',
   introDetail:
-    'Detail perencanaan disampaikan dari sisi teknis (technical) dan fungsional (functional), sehingga siapa pun dapat memperoleh gambaran awal mengenai arah pengembangan deepin. Halaman ini adalah terjemahan dan penyederhanaan resmi berbahasa Indonesia dari dokumen Product Planning deepin.',
+    'Detail perencanaan disampaikan dari sisi teknis (technical) dan fungsional (functional), sehingga siapa pun dapat memperoleh gambaran awal mengenai arah pengembangan deepin.',
 } as const;
 
 /** Halaman daftar release notes deepin di news.deepin.id. */
