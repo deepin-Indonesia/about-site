@@ -39,7 +39,7 @@ export const ABOUT_NAV: NavItem[] = [
       { title: 'Product Planning', url: 'https://about.deepin.id/product-planning/' },
       { title: 'Original Apps', url: 'https://about.deepin.id/original-apps/' },
       { title: 'Desktop Environment', url: 'https://about.deepin.id/desktop-environment/' },
-      { title: 'deepin Indonesia', url: 'https://deepin.id', highlight: true },
+      { title: 'deepin Indonesia', url: 'https://about.deepin.id/Indonesia', highlight: true },
     ],
   },
 ];
@@ -48,11 +48,4 @@ export const SOCIAL_LINKS = [
   { name: 'Telegram', url: 'https://t.me/Linux_deepin_ID', icon: 'telegram' },
   { name: 'GitHub', url: 'https://github.com/deepin-Indonesia', icon: 'github' },
   { name: 'YouTube', url: 'https://www.youtube.com/playlist?list=PLaZr9JPhal-4', icon: 'youtube' },
-];
-
-/** Sitemap internal untuk halaman-halaman di dalam subdomain about. */
-export const ABOUT_PAGES = [
-  { title: 'Product Planning', url: '/product-planning/' },
-  { title: 'Original Apps', url: '/original-apps/' },
-  { title: 'Desktop Environment', url: '/desktop-environment/' },
 ];
