@@ -4,7 +4,7 @@ export const SITE: SiteConfig = {
   name: 'deepin Indonesia',
   tagline: 'Komunitas Resmi Pengguna deepin Linux di Indonesia',
   description:
-    'Tentang deepin — pelajari roadmap rilis, rencana fitur (product planning), aplikasi orisinal, dan lingkungan desktop deepin (DDE) dalam Bahasa Indonesia.',
+    'deepin Indonesia — komunitas resmi pengguna deepin Linux di Indonesia. Kenali komunitasnya, lalu jelajahi product planning, aplikasi orisinal (original apps), dan lingkungan desktop deepin (DDE).',
   url: 'https://about.deepin.id',
   email: 'deepin@siberin.id',
   locale: 'id_ID',
@@ -36,10 +36,10 @@ export const ABOUT_NAV: NavItem[] = [
   {
     title: 'Tentang deepin',
     children: [
+      { title: 'deepin Indonesia', url: 'https://about.deepin.id/', highlight: true },
       { title: 'Product Planning', url: 'https://about.deepin.id/product-planning/' },
-      { title: 'Original Apps', url: 'https://about.deepin.id/original-apps/' },
-      { title: 'Desktop Environment', url: 'https://about.deepin.id/desktop-environment/' },
-      { title: 'deepin Indonesia', url: 'https://about.deepin.id/Indonesia', highlight: true },
+      { title: 'Original Apps', url: 'https://about.deepin.id/#original-apps' },
+      { title: 'Desktop Environment', url: 'https://about.deepin.id/#desktop-environment' },
     ],
   },
 ];

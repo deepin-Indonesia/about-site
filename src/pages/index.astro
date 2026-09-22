@@ -2,125 +2,228 @@
 import Layout from '@/components/Layout.astro';
 import { SITE } from '@/data/site';
 import { NEXT_RELEASE, RELEASE_NOTES_URL } from '@/data/product-planning';
+import {
+  INDONESIA_PAGE,
+  INDONESIA_SUPPORT,
+  INDONESIA_VALUES,
+  INDONESIA_ACTIVITIES,
+  INDONESIA_FAQ,
+  COMMUNITY_LEADS,
+  EXPLORE_SECTIONS,
+} from '@/data/deepin-indonesia';
 
-const sections = [
-  {
-    title: 'Product Planning',
-    technicalTitle: 'Roadmap & Version Plan',
-    description:
-      'Jadwal rilis deepin beserta rencana fitur versi berikutnya — dari UOS AI dan System Manager hingga Treeland dan Immutable System.',
-    url: '/product-planning/',
-    icon: 'fa-route',
-    cta: 'Lihat roadmap',
-    available: true,
-  },
-  {
-    title: 'Original Apps',
-    technicalTitle: 'deepin Original Applications',
-    description:
-      'Aplikasi orisinal buatan deepin yang dirancang menyatu dengan sistem: File Manager, Text Editor, Terminal, App Store, dan lainnya.',
-    url: '/original-apps/',
-    icon: 'fa-shapes',
-    cta: 'Segera hadir',
-    available: false,
-  },
-  {
-    title: 'Desktop Environment',
-    technicalTitle: 'Deepin Desktop Environment (DDE)',
-    description:
-      'Mengenal DDE dan Treeland — lingkungan desktop deepin yang indah, ringan, dan dibangun di atas Wayland.',
-    url: '/desktop-environment/',
-    icon: 'fa-desktop',
-    cta: 'Segera hadir',
-    available: false,
-  },
-];
+const canonicalUrl = new URL('/', SITE.url).href;
 
-const values = [
-  { icon: 'fa-code', title: 'Open Source', desc: 'Kode sumber terbuka dan dapat diaudit siapa saja, tanpa lisensi berbayar.' },
-  { icon: 'fa-shield-halved', title: 'Aman & Stabil', desc: 'Immutable System dengan snapshot dan rollback untuk melindungi data Anda.' },
-  { icon: 'fa-gauge-high', title: 'Ringan & Cepat', desc: 'Optimasi berkelanjutan pada system footprint dan performa harian.' },
-  { icon: 'fa-language', title: 'Ramah Multibahasa', desc: 'Dukungan puluhan bahasa, termasuk Bahasa Indonesia.' },
-];
+const breadcrumbs = [{ name: 'deepin Indonesia', url: '/' }];
 
-const breadcrumbs = [{ name: 'Tentang deepin', url: '/' }];
+/* ------------------------------- Structured data ------------------------------- */
 
-const webPageSchema = {
+const aboutPageSchema = {
   '@context': 'https://schema.org',
-  '@type': 'CollectionPage',
-  name: 'Tentang deepin — Roadmap, Aplikasi, dan Desktop Environment',
+  '@type': 'AboutPage',
+  name: 'deepin Indonesia — Komunitas Resmi Pengguna deepin Linux di Indonesia',
   description:
-    'Pusat informasi resmi berbahasa Indonesia tentang deepin: roadmap versi (product planning), aplikasi orisinal, dan lingkungan desktop DDE.',
+    'Halaman resmi komunitas deepin Indonesia: profil komunitas, kegiatan, serta penjelasan Product Planning, Original Apps, dan Desktop Environment (DDE) deepin dalam Bahasa Indonesia.',
   inLanguage: 'id-ID',
-  url: `${SITE.url}/`,
+  url: canonicalUrl,
+  datePublished: INDONESIA_PAGE.updated,
+  dateModified: INDONESIA_PAGE.updated,
   isPartOf: { '@type': 'WebSite', name: SITE.name, url: SITE.url },
+  about: [
+    { '@type': 'Organization', name: 'deepin Indonesia', url: SITE.url },
+    { '@type': 'SoftwareApplication', name: 'deepin', applicationCategory: 'OperatingSystem' },
+  ],
+  mentions: { '@type': 'Person', name: 'Zaky NR', url: 'https://zaky.siberin.id' },
+  sponsor: [
+    {
+      '@type': 'Organization',
+      name: 'Wuhan Deepin Technology Co., Ltd.',
+      alternateName: 'deepin main community',
+      url: 'https://www.deepin.org',
+    },
+    {
+      '@type': 'Organization',
+      name: 'UnionTech Software Technology Co., Ltd.',
+      alternateName: 'UnionTech',
+      url: 'https://www.uniontech.com',
+    },
+  ],
+  publisher: {
+    '@type': 'Organization',
+    name: 'deepin Indonesia',
+    url: SITE.url,
+    logo: { '@type': 'ImageObject', url: new URL('/images/deepin-id.png', SITE.url).href },
+    sameAs: [SITE.social.telegram, SITE.social.github, SITE.social.youtube],
+  },
+  primaryImageOfPage: {
+    '@type': 'ImageObject',
+    url: new URL('/images/deepin25/desktop.png', SITE.url).href,
+  },
+  significantLink: [
+    new URL('/product-planning/', SITE.url).href,
+    'https://news.deepin.id/?tag=release-notes',
+  ],
+};
+
+const topicListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Topik tentang deepin',
+  description:
+    'Tiga topik utama tentang deepin yang dijelaskan dalam Bahasa Indonesia: product planning, aplikasi orisinal, dan lingkungan desktop.',
+  inLanguage: 'id-ID',
+  numberOfItems: EXPLORE_SECTIONS.length,
+  itemListElement: EXPLORE_SECTIONS.map((section, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: `${section.title} — ${section.technicalTitle}`,
+    description: section.description,
+    url: new URL(section.url, SITE.url).href,
+  })),
+};
+
+const leadSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Zaky NR',
+  jobTitle: 'Official deepin Global Ambassador for Indonesia',
+  roleName: 'Lead, deepin Indonesia Community',
+  description:
+    'Lead komunitas deepin Indonesia dan Official deepin Global Ambassador for Indonesia, ditunjuk resmi oleh Wuhan Deepin Technology Co., Ltd. untuk mewakili deepin di Indonesia.',
+  image: new URL('/images/zaky-nr.jpg', SITE.url).href,
+  url: 'https://zaky.siberin.id',
+  sameAs: ['https://github.com/JackTekno', 'https://zaky.siberin.id'],
+  worksFor: { '@type': 'Organization', name: 'deepin Indonesia', url: SITE.url },
+  affiliation: {
+    '@type': 'Organization',
+    name: 'Wuhan Deepin Technology Co., Ltd.',
+    alternateName: 'deepin main community',
+    url: 'https://www.deepin.org',
+    parentOrganization: {
+      '@type': 'Organization',
+      name: 'UnionTech Software Technology Co., Ltd.',
+      url: 'https://www.uniontech.com',
+    },
+  },
+  award: 'Certificate of Appointment — Official deepin Global Ambassador for Indonesia',
+  knowsAbout: ['deepin', 'Linux', 'Deepin Desktop Environment', 'Komunitas open source'],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: INDONESIA_FAQ.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'deepin',
+  alternateName: 'deepin Operating System',
+  applicationCategory: 'OperatingSystem',
+  operatingSystem: 'Linux',
+  softwareVersion: NEXT_RELEASE.version.replace('deepin ', ''),
+  releaseNotes: RELEASE_NOTES_URL,
+  inLanguage: 'id',
+  availableLanguage: ['id', 'en'],
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'IDR' },
+  publisher: { '@type': 'Organization', name: 'deepin Indonesia', url: SITE.url },
 };
 ---
 
 <Layout
-  title="Tentang deepin — Roadmap, Aplikasi & Desktop Environment"
-  description="Pelajari deepin lebih dalam: roadmap rilis dan rencana fitur (product planning), aplikasi orisinal deepin, serta lingkungan desktop Deepin Desktop Environment (DDE) — dalam Bahasa Indonesia."
+  title="Komunitas Resmi deepin Linux di Indonesia"
+  description="Komunitas resmi pengguna deepin Linux di Indonesia — profil komunitas, pengurus, kegiatan, serta tautan ke Product Planning, Original Apps, dan DDE."
+  image="/images/og-about.png"
+  imageWidth={1200}
+  imageHeight={630}
+  preloadImage="/images/deepin-id.png"
   keywords={[
-    'tentang deepin',
     'deepin Indonesia',
+    'komunitas deepin Indonesia',
+    'deepin Linux',
+    'deepin 25',
+    'tentang deepin',
     'product planning deepin',
-    'roadmap deepin',
-    'deepin original apps',
+    'original apps deepin',
     'desktop environment deepin',
     'DDE',
-    'deepin Linux',
+    'Treeland',
+    'Linyaps',
+    'Linux Indonesia',
   ]}
   breadcrumbs={breadcrumbs}
-  schema={webPageSchema}
+  schema={[aboutPageSchema, topicListSchema, faqSchema, softwareSchema, leadSchema]}
 >
   <!-- ================= HERO ================= -->
   <section class="relative overflow-hidden bg-gradient-to-br from-gray-900 via-slate-800 to-deepin-900">
     <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
       <div class="absolute -top-40 -right-40 w-[600px] h-[600px] bg-deepin-600/20 rounded-full blur-[120px]" />
       <div class="absolute -bottom-24 left-1/5 w-[400px] h-[400px] bg-deepin-400/10 rounded-full blur-[100px]" />
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(26,109,212,0.06)_0%,transparent_70%)]" />
     </div>
 
-    <div class="container-main relative py-20 lg:py-28">
+    <div class="container-main relative py-20 lg:py-24">
       <nav aria-label="Breadcrumb" class="mb-8">
         <ol class="flex flex-wrap items-center gap-2 text-xs text-gray-400">
           <li><a href="https://deepin.id" class="hover:text-deepin-300 transition-colors">Home</a></li>
           <li aria-hidden="true"><i class="fas fa-angle-right text-[10px] opacity-50" /></li>
-          <li><span class="text-deepin-300 font-medium" aria-current="page">Tentang deepin</span></li>
+          <li><span class="text-deepin-300 font-medium" aria-current="page">deepin Indonesia</span></li>
         </ol>
       </nav>
 
-      <div class="max-w-3xl">
-        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-deepin-200 text-xs font-semibold tracking-wide uppercase mb-6 backdrop-blur-sm">
-          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          Tentang deepin
-        </span>
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 animate-fade-up">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+            deepin
+            <span class="text-deepin-400"> Indonesia</span>
+          </h1>
 
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-          Mengenal
-          <span class="text-deepin-400"> deepin</span>
-          <br />lebih dekat
-        </h1>
+          <p class="mt-6 text-base sm:text-lg text-gray-300 leading-relaxed max-w-2xl">
+            {INDONESIA_PAGE.intro}
+          </p>
 
-        <p class="mt-6 text-base sm:text-lg text-gray-300 leading-relaxed max-w-2xl">
-          Informasi resmi tentang deepin: mulai dari
-          rencana pengembangan (<em class="not-italic font-semibold text-deepin-200">product planning</em>)
-          dan jadwal rilis, aplikasi orisinal, hingga lingkungan desktop yang menjadi ciri khasnya.
-        </p>
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-8">
+            <a
+              href="https://t.me/Linux_deepin_ID"
+              target="_blank"
+              rel="noopener"
+              class="btn-primary text-base px-8 py-4 !rounded-xl justify-center"
+            >
+              <i class="fab fa-telegram-plane" aria-hidden="true" /> Gabung Komunitas
+            </a>
+            <a href="https://os.deepin.id" class="btn-outline text-base px-8 py-4 !rounded-xl justify-center">
+              <i class="fas fa-download" aria-hidden="true" /> Download deepin
+            </a>
+          </div>
+        </div>
 
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-8">
-          <a href="/product-planning/" class="btn-primary text-base px-8 py-4 !rounded-xl justify-center">
-            <i class="fas fa-route" /> Product Planning
-          </a>
-          <a href="https://os.deepin.id" class="btn-outline text-base px-8 py-4 !rounded-xl justify-center">
-            <i class="fas fa-download" /> Download deepin
-          </a>
+        <!-- Logo -->
+        <div class="lg:col-span-5 flex justify-center lg:justify-end">
+          <div class="relative w-full max-w-[320px]">
+            <div class="absolute -inset-6 bg-gradient-to-br from-deepin-400 to-deepin-600 rounded-full opacity-25 blur-3xl" aria-hidden="true" />
+            <img
+              src="/images/deepin-id.png"
+              alt="Logo deepin Indonesia"
+              width="680"
+              height="680"
+              class="relative w-full h-auto animate-float drop-shadow-2xl"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= BANNER ================= -->
-  <section class="py-6 bg-deepin-50 border-b border-deepin-100">
+  <!-- ================= BANNER RILIS ================= -->
+  <section class="py-6 bg-deepin-50 border-b border-deepin-100" aria-label="Informasi rilis terbaru">
     <div class="container-main flex flex-col sm:flex-row items-center justify-center gap-2 text-center">
       <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-deepin-600 text-white text-xs font-semibold">
         <i class="fas fa-rocket text-[10px]" aria-hidden="true" /> ROADMAP
@@ -135,24 +238,109 @@ const webPageSchema = {
     </div>
   </section>
 
-  <!-- ================= SECTION NAV ================= -->
-  <section class="py-20 bg-white" aria-labelledby="jelajahi-title">
+  <!-- ================= PENGANTAR ================= -->
+  <section class="py-20 bg-white" aria-labelledby="tentang-komunitas-title">
+    <div class="container-main">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <span class="section-eyebrow">
+            <i class="fas fa-circle-info text-[10px]" aria-hidden="true" /> Tentang komunitas
+          </span>
+          <h2 id="tentang-komunitas-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-5">
+            Apa itu <span class="text-deepin-600">deepin Indonesia</span>?
+          </h2>
+          <p class="text-gray-600 leading-relaxed mb-4">{INDONESIA_PAGE.intro}</p>
+          <p class="text-gray-500 leading-relaxed mb-6">{INDONESIA_PAGE.introDetail}</p>
+
+          <p class="flex items-start gap-2.5 text-sm text-deepin-900 bg-deepin-50 border border-deepin-100 rounded-xl px-4 py-3 mb-6">
+            <i class="fas fa-circle-check text-deepin-500 mt-0.5 shrink-0" aria-hidden="true" />
+            <span>{INDONESIA_PAGE.introSupport}</span>
+          </p>
+
+          <div class="flex flex-wrap gap-3">
+            <a href="https://t.me/Linux_deepin_ID" target="_blank" rel="noopener"
+               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-sm font-medium text-gray-700 transition-colors">
+              <i class="fab fa-telegram-plane text-[#0088cc]" aria-hidden="true" /> Grup Telegram
+            </a>
+            <a href="https://github.com/deepin-Indonesia" target="_blank" rel="noopener"
+               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-sm font-medium text-gray-700 transition-colors">
+              <i class="fab fa-github" aria-hidden="true" /> GitHub
+            </a>
+            <a href="https://www.youtube.com/playlist?list=PLaZr9JPhal-4" target="_blank" rel="noopener"
+               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-sm font-medium text-gray-700 transition-colors">
+              <i class="fab fa-youtube text-[#ff0000]" aria-hidden="true" /> Playlist Video
+            </a>
+          </div>
+        </div>
+
+        <ul class="grid sm:grid-cols-2 gap-4">
+          {INDONESIA_VALUES.map((value) => (
+            <li class="card p-5 group hover:-translate-y-1 transition-all duration-300">
+              <div class="w-11 h-11 rounded-xl bg-deepin-50 flex items-center justify-center mb-4 group-hover:bg-deepin-100 transition-colors">
+                <i class={`fas ${value.icon} text-lg text-deepin-600`} aria-hidden="true" />
+              </div>
+              <h3 class="font-bold text-gray-900 text-sm mb-1.5">{value.title}</h3>
+              <p class="text-xs text-gray-500 leading-relaxed">{value.desc}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= KEGIATAN ================= -->
+  <section class="py-20 bg-gray-50" aria-labelledby="kegiatan-title">
     <div class="container-main">
       <div class="text-center mb-14 max-w-2xl mx-auto">
         <span class="section-eyebrow">
-          <i class="fas fa-compass text-[10px]" aria-hidden="true" /> Jelajahi
+          <i class="fas fa-compass text-[10px]" aria-hidden="true" /> Yang kami lakukan
         </span>
-        <h2 id="jelajahi-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900">
-          Topik <span class="text-deepin-600">Tentang deepin</span>
+        <h2 id="kegiatan-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900">
+          Kegiatan <span class="text-deepin-600">komunitas</span>
         </h2>
         <p class="mt-4 text-gray-500 leading-relaxed">
-          Tiga area utama yang menjelaskan bagaimana deepin dibangun, dikembangkan, dan digunakan.
+          Empat hal yang kami kerjakan setiap hari agar pengguna deepin di Indonesia tidak berjalan sendiri.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {INDONESIA_ACTIVITIES.map((activity) => (
+          <article class="card p-6 flex flex-col group hover:-translate-y-1 transition-all duration-300">
+            <div class="w-12 h-12 rounded-2xl bg-deepin-600 flex items-center justify-center mb-4 shadow-lg shadow-deepin-600/20">
+              <i class={`fas ${activity.icon} text-lg text-white`} aria-hidden="true" />
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">{activity.title}</h3>
+            <p class="text-sm text-gray-500 leading-relaxed flex-1">{activity.desc}</p>
+            <a
+              href={activity.link.url}
+              target={activity.link.url.startsWith('http') ? '_blank' : undefined}
+              rel={activity.link.url.startsWith('http') ? 'noopener' : undefined}
+              class="inline-flex items-center gap-1.5 mt-4 text-sm font-semibold text-deepin-600 hover:text-deepin-800 transition-colors"
+            >
+              {activity.link.text} <i class="fas fa-arrow-right text-[10px]" aria-hidden="true" />
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TENTANG DEEPIN ================= -->
+  <section id="tentang-deepin" class="py-20 bg-white scroll-mt-24" aria-labelledby="jelajahi-title">
+    <div class="container-main">
+      <div class="text-center mb-14 max-w-3xl mx-auto">
+        <h2 id="jelajahi-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900">
+          Tentang <span class="text-deepin-600">deepin</span>
+        </h2>
+        <p class="mt-4 text-gray-500 leading-relaxed">
+          Setelah mengenal komunitasnya, ada tiga topik yang menjelaskan bagaimana deepin dibangun dan
+          digunakan. Dua di antaranya dijelaskan langsung di halaman ini, satu punya halaman tersendiri.
         </p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6">
-        {sections.map((section) => (
-          <article class:list={['card p-7 flex flex-col group hover:-translate-y-1 transition-all duration-300', !section.available ? 'opacity-90' : '']}>
+        {EXPLORE_SECTIONS.map((section) => (
+          <article class="card p-7 flex flex-col group hover:-translate-y-1 transition-all duration-300">
             <div class="w-14 h-14 rounded-2xl bg-deepin-50 flex items-center justify-center mb-5 group-hover:bg-deepin-100 transition-colors">
               <i class={`fas ${section.icon} text-xl text-deepin-600`} aria-hidden="true" />
             </div>
@@ -161,71 +349,160 @@ const webPageSchema = {
             </p>
             <h3 class="text-lg font-bold text-gray-900 mb-2.5">{section.title}</h3>
             <p class="text-sm text-gray-600 leading-relaxed flex-1">{section.description}</p>
-
-            {section.available ? (
-              <a href={section.url} class="inline-flex items-center gap-2 mt-5 text-sm font-semibold text-deepin-600 hover:text-deepin-800 transition-colors">
-                {section.cta} <i class="fas fa-arrow-right text-[10px]" aria-hidden="true" />
-              </a>
-            ) : (
-              <span class="inline-flex items-center gap-2 mt-5 text-sm font-semibold text-gray-400">
-                <i class="fas fa-clock text-[10px]" aria-hidden="true" /> {section.cta}
-              </span>
-            )}
+            <a
+              href={section.url}
+              class="inline-flex items-center gap-2 mt-5 text-sm font-semibold text-deepin-600 hover:text-deepin-800 transition-colors"
+            >
+              {section.cta} <i class="fas fa-arrow-right text-[10px]" aria-hidden="true" />
+            </a>
           </article>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- ================= NILAI ================= -->
-  <section class="py-20 bg-gray-50" aria-labelledby="nilai-title">
+  <!-- ================= PENGURUS KOMUNITAS ================= -->
+  <section class="py-20 bg-gray-50" aria-labelledby="pengurus-title">
     <div class="container-main">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <span class="section-eyebrow">
-            <i class="fas fa-gem text-[10px]" aria-hidden="true" /> Prinsip
-          </span>
-          <h2 id="nilai-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-5">
-            Prinsip yang <span class="text-deepin-600">deepin pegang</span>
-          </h2>
-          <p class="text-gray-500 leading-relaxed mb-6">
-            deepin dibangun dengan keyakinan bahwa sistem operasi harus indah, mudah digunakan, dan
-            dapat dipercaya. Prinsip ini tercermin pada setiap keputusan desain dan teknis — dari
-            lingkungan desktop hingga format paket aplikasi.
-          </p>
-          <ul class="grid sm:grid-cols-2 gap-4">
-            {values.map((value) => (
-              <li class="bg-white rounded-2xl border border-gray-100 p-4 shadow-sm">
-                <i class={`fas ${value.icon} text-deepin-500 mb-2`} aria-hidden="true" />
-                <h3 class="font-bold text-gray-900 text-sm mb-1">{value.title}</h3>
-                <p class="text-xs text-gray-500 leading-relaxed">{value.desc}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
+      <div class="text-center mb-12 max-w-2xl mx-auto">
+        <span class="section-eyebrow">
+          <i class="fas fa-user-tie text-[10px]" aria-hidden="true" /> Pengurus
+        </span>
+        <h2 id="pengurus-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900">
+          Pengurus <span class="text-deepin-600">komunitas</span>
+        </h2>
+        <p class="mt-4 text-gray-500 leading-relaxed">
+          Komunitas deepin Indonesia dijalankan oleh pengurus yang menjadi titik kontak resmi
+          bagi pengguna, kontributor, maupun mitra.
+        </p>
+      </div>
 
-        <div class="rounded-3xl border border-deepin-100 bg-gradient-to-br from-deepin-600 to-deepin-800 p-8 text-white shadow-xl">
-          <i class="fas fa-quote-left text-3xl text-deepin-300/50 mb-4" aria-hidden="true" />
-          <p class="text-lg leading-relaxed text-deepin-50 mb-6">
-            "<span class="font-semibold">deepin</span> hadir untuk menunjukkan bahwa sistem operasi
-            Linux dapat terasa modern, ramah pengguna, dan menyenangkan untuk dipakai setiap hari."
-          </p>
-          <p class="text-sm text-deepin-200">
-            <strong class="text-white block">deepin Indonesia</strong>
-            Komunitas resmi pengguna deepin di Indonesia
-          </p>
-          <div class="mt-6 pt-6 border-t border-white/20 grid grid-cols-2 gap-4 text-center">
-            <div>
-              <div class="text-2xl font-extrabold">100%</div>
-              <div class="text-xs text-deepin-200">Gratis &amp; Open Source</div>
-            </div>
-            <div>
-              <div class="text-2xl font-extrabold">100.000+</div>
-              <div class="text-xs text-deepin-200">Aplikasi Tersedia</div>
+      {COMMUNITY_LEADS.map((lead) => (
+        <article class="max-w-3xl mx-auto card p-7 sm:p-9">
+          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
+            <img
+              src={lead.photo}
+              alt={`${lead.name} — ${lead.role}`}
+              width="240"
+              height="240"
+              class="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl object-cover ring-4 ring-deepin-100 shrink-0"
+              loading="lazy"
+              decoding="async"
+            />
+
+            <div class="flex-1">
+              <h3 class="text-xl sm:text-2xl font-extrabold text-gray-900">{lead.name}</h3>
+              <p class="text-sm font-semibold text-deepin-600 mt-0.5">{lead.role}</p>
+              <p class="inline-flex items-center gap-1.5 text-sm font-bold text-amber-700 mt-2">
+                <i class="fas fa-award text-xs" aria-hidden="true" />
+                {lead.badge}
+              </p>
+              <p class="text-xs text-gray-400 mt-1 flex items-center gap-1.5">
+                <i class="fas fa-certificate text-[10px]" aria-hidden="true" />
+                {lead.badgeDetail}
+              </p>
+
+              <p class="text-sm text-gray-600 leading-relaxed mt-4">{lead.bio}</p>
+
+              <div class="flex flex-wrap justify-center sm:justify-start gap-2.5 mt-5">
+                {lead.links.map((link) => (
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener"
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-sm font-medium text-gray-700 transition-colors"
+                  >
+                    <i class={link.icon} aria-hidden="true" /> {link.label}
+                    <i class="fas fa-external-link-alt text-[10px] opacity-50" aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
+        </article>
+      ))}
+
+      <!-- Dukungan resmi deepin main community -->
+      <aside class="max-w-3xl mx-auto mt-6 rounded-2xl border border-deepin-100 bg-white p-6 sm:p-7">
+        <div class="flex items-center gap-3 mb-1">
+          <div class="w-10 h-10 rounded-xl bg-deepin-600 flex items-center justify-center shrink-0 shadow-lg shadow-deepin-600/20">
+            <i class="fas fa-handshake text-base text-white" aria-hidden="true" />
+          </div>
+          <div>
+            <p class="text-[11px] font-bold text-deepin-600 uppercase tracking-wider">
+              {INDONESIA_SUPPORT.label}
+            </p>
+            <h3 class="font-bold text-gray-900 leading-snug">Di balik deepin</h3>
+          </div>
         </div>
+        <p class="text-sm text-gray-600 leading-relaxed mt-3">
+          {INDONESIA_SUPPORT.description}
+        </p>
+
+        <ul class="grid sm:grid-cols-2 gap-4 mt-5">
+          {INDONESIA_SUPPORT.organizations.map((org) => (
+            <li class:list={['rounded-xl border p-4', org.highlight ? 'border-deepin-200 bg-deepin-50/60' : 'border-gray-200 bg-gray-50']}>
+              <h4 class="font-bold text-gray-900 text-sm leading-snug">{org.name}</h4>
+              <p class="text-[11px] font-semibold text-deepin-600 mt-1 uppercase tracking-wide">
+                {org.alias}
+              </p>
+              <p class="text-xs text-gray-500 mt-1">{org.role}</p>
+              <p class="text-xs text-gray-600 leading-relaxed mt-2.5">{org.description}</p>
+              <div class="flex flex-wrap gap-2 mt-3">
+                {org.links.map((link) => (
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener"
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-gray-200 hover:border-deepin-300 hover:text-deepin-700 text-xs font-medium text-gray-700 transition-colors"
+                  >
+                    <i class={link.icon} aria-hidden="true" /> {link.label}
+                    <i class="fas fa-external-link-alt text-[9px] opacity-50" aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section id="faq" class="py-20 bg-gray-50 scroll-mt-24" aria-labelledby="faq-title">
+    <div class="container-main max-w-3xl">
+      <div class="text-center mb-12">
+        <span class="section-eyebrow">
+          <i class="fas fa-circle-question text-[10px]" aria-hidden="true" /> FAQ
+        </span>
+        <h2 id="faq-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900">
+          Pertanyaan <span class="text-deepin-600">umum</span>
+        </h2>
+        <p class="mt-4 text-gray-500 leading-relaxed">
+          Hal yang paling sering ditanyakan seputar komunitas deepin Indonesia.
+        </p>
       </div>
+
+      <div class="space-y-3">
+        {INDONESIA_FAQ.map((item) => (
+          <details class="group rounded-2xl border border-gray-200 overflow-hidden bg-white hover:border-deepin-200 transition-colors">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer px-5 py-4 font-semibold text-gray-900 text-sm hover:bg-gray-50 [&::-webkit-details-marker]:hidden">
+              <span>{item.question}</span>
+              <i class="fas fa-chevron-down text-xs text-gray-400 shrink-0 group-open:rotate-180 transition-transform" aria-hidden="true" />
+            </summary>
+            <div class="px-5 pb-5 pt-1 text-sm text-gray-600 leading-relaxed border-t border-gray-100">
+              {item.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <p class="mt-8 text-center text-sm text-gray-500">
+        Belum terjawab?{' '}
+        <a href="mailto:deepin@siberin.id" class="text-deepin-600 font-semibold hover:underline">Kirim email</a>
+        {' '}atau tanyakan langsung di{' '}
+        <a href="https://t.me/Linux_deepin_ID" target="_blank" rel="noopener" class="text-deepin-600 font-semibold hover:underline">grup Telegram</a>.
+      </p>
     </div>
   </section>
 
@@ -234,17 +511,19 @@ const webPageSchema = {
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(96,165,250,0.15)_0%,transparent_50%)]" aria-hidden="true" />
     <div class="container-main relative text-center">
       <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-        Ingin Tahu Arah <span class="text-deepin-300">deepin</span> Selanjutnya?
+        Mari bertumbuh bersama <span class="text-deepin-300">deepin Indonesia</span>
       </h2>
       <p class="text-deepin-200 text-base sm:text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-        Baca product planning untuk melihat rencana fitur dan jadwal rilis versi berikutnya secara lengkap.
+        Gratis, terbuka, dan tanpa syarat. Cukup bergabung, bertanya, atau bagikan pengalaman Anda
+        menggunakan deepin.
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href="/product-planning/" class="btn-primary text-base px-8 py-4 !rounded-xl !bg-white !text-deepin-700 hover:!bg-gray-100 w-full sm:w-auto justify-center">
-          <i class="fas fa-route" /> Product Planning
+        <a href="https://t.me/Linux_deepin_ID" target="_blank" rel="noopener"
+           class="btn-primary text-base px-8 py-4 !rounded-xl !bg-white !text-deepin-700 hover:!bg-gray-100 w-full sm:w-auto justify-center">
+          <i class="fab fa-telegram-plane" aria-hidden="true" /> Gabung Komunitas
         </a>
-        <a href={RELEASE_NOTES_URL} target="_blank" rel="noopener" class="btn-outline text-base px-8 py-4 !rounded-xl w-full sm:w-auto justify-center">
-          <i class="fas fa-file-lines" /> Release Notes
+        <a href="/product-planning/" class="btn-outline text-base px-8 py-4 !rounded-xl w-full sm:w-auto justify-center">
+          <i class="fas fa-route" aria-hidden="true" /> Lihat Product Planning
         </a>
       </div>
     </div>
