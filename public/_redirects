@@ -20,4 +20,13 @@
 /tentang-deepin/desktop-environment  /desktop-environment/  301
 
 # deepin Indonesia diarahkan ke situs utama
-/tentang-deepin-id/*  https://deepin.id/  301
+/tentang-deepin-id/*  /  301
+/tentang-deepin-id  /  301
+
+# URL lama "deepin Indonesia" (sekarang menjadi halaman utama)
+/Indonesia/*  /  301
+/Indonesia  /  301
+/indonesia/*  /  301
+/indonesia  /  301
+/tentang-deepin/*  /  301
+/tentang-deepin  /  301

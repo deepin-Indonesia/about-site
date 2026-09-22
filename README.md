@@ -1,12 +1,19 @@
 # about-site — deepin Indonesia
 
-Situs statis **Tentang deepin** untuk komunitas deepin Indonesia, dibangun dengan
+Situs statis **deepin Indonesia** sekaligus pusat informasi **Tentang deepin**, dibangun dengan
 [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com).
 
 - **Produksi:** <https://about.deepin.id>
-- **Halaman:** `/` (landing Tentang deepin), `/product-planning/`
+- **Halaman:**
+  - `/` — **deepin Indonesia** (profil komunitas) + penjelasan Product Planning,
+    Original Apps, dan Desktop Environment dalam satu halaman
+  - `/product-planning/` — roadmap versi & rencana fitur deepin
 - **Analytics:** Google Analytics 4 (`G-2J4TLB9W7H`) via `Analytics.astro`
 - **Deploy:** Cloudflare Pages, branch `main`
+
+> `about.deepin.id` adalah halaman **deepin Indonesia**. Halaman ini menjelaskan komunitasnya
+> terlebih dahulu, lalu dilanjutkan dengan tiga topik: Product Planning (punya halaman sendiri),
+> Original Apps, dan Desktop Environment.
 
 ## Struktur
 
@@ -15,9 +22,10 @@ src/
 ├── components/        Header, Footer, Layout, Analytics
 ├── data/
 │   ├── site.ts        Konfigurasi situs, navigasi
+│   ├── deepin-indonesia.ts   Konten halaman utama (profil komunitas, apps, DDE, FAQ)
 │   └── product-planning.ts   Konten product planning (roadmap & rencana fitur)
 ├── pages/
-│   ├── index.astro            Landing "Tentang deepin"
+│   ├── index.astro            Landing "deepin Indonesia"
 │   ├── 404.astro              Halaman tidak ditemukan
 │   └── product-planning/
 │       └── index.astro        Roadmap versi + rencana fitur deepin
@@ -44,10 +52,25 @@ src/
 
 - Meta description, keywords, canonical, dan `hreflang` (`id-ID`, `x-default`) per halaman.
 - Open Graph + Twitter Card dengan gambar 1200×630.
-- JSON-LD: `Organization`, `WebSite`, `BreadcrumbList`, `TechArticle`, `FAQPage`,
-  dan `SoftwareApplication`.
+- JSON-LD: `Organization`, `WebSite`, `BreadcrumbList`, `AboutPage`, `ItemList`,
+  `TechArticle`, `FAQPage`, dan `SoftwareApplication`.
 - Sitemap otomatis (`@astrojs/sitemap`) + `public/robots.txt`.
 - Struktur heading hierarkis, tabel semantik, `<time>`, serta ARIA label.
+- `public/_redirects` memetakan URL lama (`/Indonesia`, `/tentang-deepin/*`) ke halaman utama.
+
+## Struktur Halaman Utama (`/`)
+
+1. Hero — identitas komunitas + fakta singkat.
+2. Pengantar "Apa itu deepin Indonesia?" + prinsip komunitas.
+3. Kegiatan komunitas (edukasi, release notes, diskusi, event).
+4. Ringkasan tiga topik: Product Planning, Original Apps, Desktop Environment.
+5. `#product-planning` — ringkasan roadmap + sorotan versi berikutnya.
+6. `#original-apps` — daftar aplikasi orisinal deepin.
+7. `#desktop-environment` — DDE 7.0 & Treeland.
+8. Timeline komunitas, FAQ (`FAQPage`), dan CTA.
+
+Anchor `#original-apps` dan `#desktop-environment` dipakai oleh dropdown "Tentang deepin" di
+kelima subdomain sampai halaman khusus keduanya dibangun.
 
 ## Analitik (Google Analytics 4)
 
