@@ -14,7 +14,6 @@ export const PLANNING_PAGE = {
   headline: 'Product Planning deepin',
   tagline: 'Roadmap versi & rencana fitur deepin',
   updated: '2026-09-14',
-  updatedLabel: '14 September 2026',
   intro:
     'Agar pengguna komunitas selalu mendapat informasi terbaru mengenai roadmap versi Sistem Operasi deepin (selanjutnya disebut "deepin"), tim deepin mengumumkan rencana sasaran (planned objectives) untuk versi pre-release berikutnya sebelum versi tersebut diluncurkan.',
   introDetail:
