@@ -13,7 +13,6 @@ export const INDONESIA_PAGE = {
   title: 'deepin Indonesia',
   tagline: 'Komunitas resmi pengguna deepin Linux di Indonesia',
   updated: '2026-09-22',
-  updatedLabel: '22 September 2026',
   intro:
     'deepin Indonesia adalah komunitas resmi pengguna deepin Linux di Indonesia — wadah bagi siapa saja yang ingin mengenal, menggunakan, dan ikut mengembangkan deepin di Tanah Air.',
   introDetail:
