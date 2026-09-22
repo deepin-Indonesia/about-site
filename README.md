@@ -53,12 +53,24 @@ Dua di antaranya (`/original-apps/`, `/desktop-environment/`) masih dalam penger
 ## SEO
 
 - Meta description, keywords, canonical, dan `hreflang` (`id-ID`, `x-default`) per halaman.
-- Open Graph + Twitter Card dengan gambar 1200×630.
+- Judul ≤ 62 karakter dan deskripsi ≤ 155 karakter agar tidak terpotong di hasil pencarian.
+- Open Graph + Twitter Card dengan gambar 1200×630 (`/images/og-about.png`),
+  `og:image:type`, dan dimensi yang sesuai gambar asli.
 - JSON-LD: `Organization`, `WebSite`, `BreadcrumbList`, `AboutPage`, `ItemList`,
   `TechArticle`, `FAQPage`, dan `SoftwareApplication`.
-- Sitemap otomatis (`@astrojs/sitemap`) + `public/robots.txt`.
+- Sitemap otomatis (`@astrojs/sitemap`) dengan `lastmod` per halaman sesuai tanggal
+  pembaruan konten (lihat `CONTENT_UPDATED` di `astro.config.mjs`), plus `public/robots.txt`.
+- Halaman 404 memakai `noindex, follow` dan tidak dikirim `hreflang`.
+- `public/site.webmanifest` untuk metadata PWA (nama, ikon, warna tema).
 - Struktur heading hierarkis, tabel semantik, `<time>`, serta ARIA label.
+- Ikon dekoratif diberi `aria-hidden`, tautan ikon-saja diberi `aria-label`,
+  dan semua gambar punya `alt` + `width`/`height` (mencegah layout shift).
+- Resource hints: `preconnect` ke cdnjs + GTM, `dns-prefetch` ke GA, serta
+  `preload` gambar LCP (`preloadImage` pada `Layout`).
 - `public/_redirects` memetakan URL lama (`/Indonesia`, `/tentang-deepin/*`) ke halaman utama.
+
+> Saat mengubah konten, perbarui juga tanggal di `CONTENT_UPDATED`
+> (`astro.config.mjs`), `INDONESIA_PAGE.updated`, dan `PLANNING_PAGE.updated`.
 
 ## Struktur Halaman Utama (`/`)
 

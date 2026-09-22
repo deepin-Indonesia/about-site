@@ -19,22 +19,43 @@ export const INDONESIA_PAGE = {
   introDetail:
     'Kami membantu pengguna baru maupun berpengalaman: menyediakan panduan berbahasa Indonesia, menerjemahkan istilah teknis, menyebarkan kabar rilis terbaru, serta menjadi tempat bertanya ketika menemui kendala instalasi atau penggunaan sehari-hari.',
   introSupport:
-    'Komunitas ini berdiri dan tumbuh atas dukungan deepin main community, yaitu Wuhan Deepin Technology Co., Ltd. selaku pengembang resmi Sistem Operasi deepin.',
+    'Komunitas ini berdiri dan tumbuh atas dukungan pengembang resmi deepin — Wuhan Deepin Technology Co., Ltd. (deepin main community) dan perusahaan induknya, UnionTech Software Technology Co., Ltd.',
 } as const;
 
 /**
- * Dukungan & pengakuan resmi dari deepin main community.
+ * Dukungan & pengakuan resmi dari pihak di balik deepin.
  * Komunitas deepin Indonesia tidak berdiri sendiri — keberadaannya didukung
  * dan diakui oleh pengembang resmi deepin.
+ *
+ * Catatan: deepin dan UOS dikembangkan oleh dua badan hukum yang berhubungan.
+ * Wuhan Deepin Technology Co., Ltd. adalah pengembang deepin (open source),
+ * sedangkan UnionTech Software Technology Co., Ltd. adalah perusahaan induknya
+ * sekaligus pengembang UOS (Unity Operating System), versi komersial deepin.
  */
 export const INDONESIA_SUPPORT = {
-  label: 'Didukung oleh',
-  org: 'Wuhan Deepin Technology Co., Ltd.',
-  alias: 'deepin main community',
-  role: 'Pengembang resmi Sistem Operasi deepin',
+  label: 'Dukungan & ekosistem',
   description:
-    'Komunitas deepin Indonesia berdiri atas dukungan deepin main community — Wuhan Deepin Technology Co., Ltd., pengembang resmi Sistem Operasi deepin. Dukungan tersebut diwujudkan melalui pengakuan resmi komunitas, penunjukan Official deepin Global Ambassador for Indonesia, serta akses koordinasi dan informasi langsung dengan tim deepin.',
-  links: [{ label: 'deepin.org', url: 'https://www.deepin.org', icon: 'fas fa-globe' }],
+    'Komunitas deepin Indonesia berdiri atas dukungan pengembang resmi deepin. Dukungan tersebut diwujudkan melalui pengakuan resmi komunitas, penunjukan Official deepin Global Ambassador for Indonesia, serta akses koordinasi dan informasi langsung dengan tim deepin.',
+  organizations: [
+    {
+      name: 'Wuhan Deepin Technology Co., Ltd.',
+      alias: 'deepin main community',
+      role: 'Pengembang resmi Sistem Operasi deepin',
+      description:
+        'Perusahaan di balik deepin sebagai distribusi Linux open source. Dari sinilah komunitas deepin Indonesia memperoleh pengakuan resmi, dukungan informasi rilis, dan jalur koordinasi dengan tim pengembang.',
+      links: [{ label: 'deepin.org', url: 'https://www.deepin.org', icon: 'fas fa-globe' }],
+      highlight: true,
+    },
+    {
+      name: 'UnionTech Software Technology Co., Ltd.',
+      alias: 'UnionTech',
+      role: 'Perusahaan induk Deepin Technology · Pengembang UOS',
+      description:
+        'Perusahaan induk Wuhan Deepin Technology. Teknologi deepin juga dikembangkan UnionTech dalam bentuk komersial bernama UOS (Unity Operating System) untuk kebutuhan enterprise, pemerintahan, dan institusi — sehingga deepin dan UOS berbagi fondasi teknis yang sama, termasuk DDE dan aplikasi orisinalnya.',
+      links: [{ label: 'uniontech.com', url: 'https://www.uniontech.com', icon: 'fas fa-globe' }],
+      highlight: false,
+    },
+  ],
 } as const;
 
 /** Nilai / prinsip komunitas. */
@@ -149,7 +170,12 @@ export const INDONESIA_FAQ: FaqItem[] = [
   {
     question: 'Apakah deepin Indonesia bagian dari deepin Technology?',
     answer:
-      'deepin Indonesia adalah komunitas pengguna di Indonesia yang berdiri atas dukungan deepin main community, yaitu Wuhan Deepin Technology Co., Ltd. selaku pengembang resmi Sistem Operasi deepin. Dukungan itu diwujudkan melalui pengakuan resmi komunitas dan penunjukan Official deepin Global Ambassador for Indonesia, sehingga kami dapat menyalurkan informasi dan aspirasi pengguna Indonesia langsung ke tim deepin.',
+      'deepin Indonesia adalah komunitas pengguna di Indonesia yang berdiri atas dukungan pengembang resmi deepin, yaitu Wuhan Deepin Technology Co., Ltd. (deepin main community) beserta perusahaan induknya, UnionTech Software Technology Co., Ltd. Dukungan itu diwujudkan melalui pengakuan resmi komunitas dan penunjukan Official deepin Global Ambassador for Indonesia, sehingga kami dapat menyalurkan informasi dan aspirasi pengguna Indonesia langsung ke tim deepin.',
+  },
+  {
+    question: 'Apa hubungan deepin dengan UOS dan UnionTech?',
+    answer:
+      'deepin adalah distribusi Linux open source yang dikembangkan Wuhan Deepin Technology Co., Ltd. Perusahaan tersebut merupakan bagian dari UnionTech Software Technology Co., Ltd., yang mengembangkan UOS (Unity Operating System) sebagai versi komersial deepin untuk kebutuhan enterprise, pemerintahan, dan institusi. Karena berasal dari fondasi yang sama, deepin dan UOS berbagi banyak teknologi seperti DDE, Treeland, dan aplikasi orisinal deepin.',
   },
   {
     question: 'Bagaimana cara bergabung dengan komunitas deepin Indonesia?',

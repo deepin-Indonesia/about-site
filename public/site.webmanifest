@@ -1,0 +1,33 @@
+{
+  "name": "deepin Indonesia — Komunitas Resmi Pengguna deepin Linux",
+  "short_name": "deepin ID",
+  "description": "Komunitas resmi pengguna deepin Linux di Indonesia. Profil komunitas, pengurus, serta penjelasan Product Planning, Original Apps, dan Desktop Environment (DDE).",
+  "lang": "id-ID",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a2954",
+  "theme_color": "#1a6dd4",
+  "categories": ["education", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/images/deepin-id.png",
+      "sizes": "680x680",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

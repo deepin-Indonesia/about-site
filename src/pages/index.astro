@@ -34,12 +34,20 @@ const aboutPageSchema = {
     { '@type': 'SoftwareApplication', name: 'deepin', applicationCategory: 'OperatingSystem' },
   ],
   mentions: { '@type': 'Person', name: 'Zaky NR', url: 'https://zaky.siberin.id' },
-  sponsor: {
-    '@type': 'Organization',
-    name: 'Wuhan Deepin Technology Co., Ltd.',
-    alternateName: 'deepin main community',
-    url: 'https://www.deepin.org',
-  },
+  sponsor: [
+    {
+      '@type': 'Organization',
+      name: 'Wuhan Deepin Technology Co., Ltd.',
+      alternateName: 'deepin main community',
+      url: 'https://www.deepin.org',
+    },
+    {
+      '@type': 'Organization',
+      name: 'UnionTech Software Technology Co., Ltd.',
+      alternateName: 'UnionTech',
+      url: 'https://www.uniontech.com',
+    },
+  ],
   publisher: {
     '@type': 'Organization',
     name: 'deepin Indonesia',
@@ -91,6 +99,11 @@ const leadSchema = {
     name: 'Wuhan Deepin Technology Co., Ltd.',
     alternateName: 'deepin main community',
     url: 'https://www.deepin.org',
+    parentOrganization: {
+      '@type': 'Organization',
+      name: 'UnionTech Software Technology Co., Ltd.',
+      url: 'https://www.uniontech.com',
+    },
   },
   award: 'Certificate of Appointment — Official deepin Global Ambassador for Indonesia',
   knowsAbout: ['deepin', 'Linux', 'Deepin Desktop Environment', 'Komunitas open source'],
@@ -123,9 +136,12 @@ const softwareSchema = {
 ---
 
 <Layout
-  title="Komunitas Resmi Pengguna deepin Linux di Indonesia"
-  description="deepin Indonesia adalah komunitas resmi pengguna deepin Linux di Indonesia. Kenali komunitasnya, lalu jelajahi Product Planning, Original Apps, dan Desktop Environment (DDE) deepin — lengkap dalam Bahasa Indonesia."
-  image="/images/deepin-id.png"
+  title="Komunitas Resmi deepin Linux di Indonesia"
+  description="Komunitas resmi pengguna deepin Linux di Indonesia — profil komunitas, pengurus, kegiatan, serta tautan ke Product Planning, Original Apps, dan DDE."
+  image="/images/og-about.png"
+  imageWidth={1200}
+  imageHeight={630}
+  preloadImage="/images/deepin-id.png"
   keywords={[
     'deepin Indonesia',
     'komunitas deepin Indonesia',
@@ -375,14 +391,14 @@ const softwareSchema = {
             />
 
             <div class="flex-1">
-              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 text-[11px] font-bold uppercase tracking-wide border border-amber-200">
-                <i class="fas fa-award text-[10px]" aria-hidden="true" /> Official
-              </span>
-              <h3 class="text-xl sm:text-2xl font-extrabold text-gray-900 mt-3">{lead.name}</h3>
+              <h3 class="text-xl sm:text-2xl font-extrabold text-gray-900">{lead.name}</h3>
               <p class="text-sm font-semibold text-deepin-600 mt-0.5">{lead.role}</p>
-              <p class="text-sm font-bold text-amber-700 mt-1.5">{lead.badge}</p>
-              <p class="text-xs text-gray-500 mt-1 flex items-center gap-1.5">
-                <i class="fas fa-certificate text-[10px] text-amber-500" aria-hidden="true" />
+              <p class="inline-flex items-center gap-1.5 text-sm font-bold text-amber-700 mt-2">
+                <i class="fas fa-award text-xs" aria-hidden="true" />
+                {lead.badge}
+              </p>
+              <p class="text-xs text-gray-400 mt-1 flex items-center gap-1.5">
+                <i class="fas fa-certificate text-[10px]" aria-hidden="true" />
                 {lead.badgeDetail}
               </p>
 
@@ -408,38 +424,46 @@ const softwareSchema = {
 
       <!-- Dukungan resmi deepin main community -->
       <aside class="max-w-3xl mx-auto mt-6 rounded-2xl border border-deepin-100 bg-white p-6 sm:p-7">
-        <div class="flex items-start gap-4">
-          <div class="w-11 h-11 rounded-xl bg-deepin-600 flex items-center justify-center shrink-0 shadow-lg shadow-deepin-600/20">
-            <i class="fas fa-handshake text-lg text-white" aria-hidden="true" />
+        <div class="flex items-center gap-3 mb-1">
+          <div class="w-10 h-10 rounded-xl bg-deepin-600 flex items-center justify-center shrink-0 shadow-lg shadow-deepin-600/20">
+            <i class="fas fa-handshake text-base text-white" aria-hidden="true" />
           </div>
-          <div class="flex-1">
+          <div>
             <p class="text-[11px] font-bold text-deepin-600 uppercase tracking-wider">
               {INDONESIA_SUPPORT.label}
             </p>
-            <h3 class="font-bold text-gray-900 leading-snug mt-0.5">
-              {INDONESIA_SUPPORT.org}
-            </h3>
-            <p class="text-xs text-gray-500 mt-0.5">
-              {INDONESIA_SUPPORT.alias} · {INDONESIA_SUPPORT.role}
-            </p>
-            <p class="text-sm text-gray-600 leading-relaxed mt-3">
-              {INDONESIA_SUPPORT.description}
-            </p>
-            <div class="flex flex-wrap gap-2.5 mt-4">
-              {INDONESIA_SUPPORT.links.map((link) => (
-                <a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener"
-                  class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-sm font-medium text-gray-700 transition-colors"
-                >
-                  <i class={link.icon} aria-hidden="true" /> {link.label}
-                  <i class="fas fa-external-link-alt text-[10px] opacity-50" aria-hidden="true" />
-                </a>
-              ))}
-            </div>
+            <h3 class="font-bold text-gray-900 leading-snug">Di balik deepin</h3>
           </div>
         </div>
+        <p class="text-sm text-gray-600 leading-relaxed mt-3">
+          {INDONESIA_SUPPORT.description}
+        </p>
+
+        <ul class="grid sm:grid-cols-2 gap-4 mt-5">
+          {INDONESIA_SUPPORT.organizations.map((org) => (
+            <li class:list={['rounded-xl border p-4', org.highlight ? 'border-deepin-200 bg-deepin-50/60' : 'border-gray-200 bg-gray-50']}>
+              <h4 class="font-bold text-gray-900 text-sm leading-snug">{org.name}</h4>
+              <p class="text-[11px] font-semibold text-deepin-600 mt-1 uppercase tracking-wide">
+                {org.alias}
+              </p>
+              <p class="text-xs text-gray-500 mt-1">{org.role}</p>
+              <p class="text-xs text-gray-600 leading-relaxed mt-2.5">{org.description}</p>
+              <div class="flex flex-wrap gap-2 mt-3">
+                {org.links.map((link) => (
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener"
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-gray-200 hover:border-deepin-300 hover:text-deepin-700 text-xs font-medium text-gray-700 transition-colors"
+                  >
+                    <i class={link.icon} aria-hidden="true" /> {link.label}
+                    <i class="fas fa-external-link-alt text-[9px] opacity-50" aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ul>
       </aside>
     </div>
   </section>
