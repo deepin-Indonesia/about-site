@@ -132,11 +132,19 @@ window.deepinTrack('os_select', { arch: 'arm64' });
 ### Halaman utama — `src/data/deepin-indonesia.ts`
 
 - `INDONESIA_PAGE` — judul, tagline, pengantar, dan tanggal pembaruan.
+- `INDONESIA_SUPPORT` — dukungan resmi dari deepin main community
+  (Wuhan Deepin Technology Co., Ltd.).
 - `INDONESIA_VALUES` — prinsip komunitas.
 - `INDONESIA_ACTIVITIES` — kegiatan komunitas beserta tautannya.
 - `EXPLORE_SECTIONS` — tiga kartu topik "Tentang deepin" (judul, deskripsi, ikon, URL, CTA).
-- `COMMUNITY_LEADS` — pengurus komunitas (nama, jabatan, badge, foto, bio, tautan).
+- `COMMUNITY_LEADS` — pengurus komunitas (nama, jabatan, badge, foto, bio, kutipan
+  Certificate of Appointment, tautan).
 - `INDONESIA_FAQ` — pertanyaan umum yang juga menjadi schema `FAQPage`.
+
+> **Catatan ikon:** nilai `icon` pada array `links` harus menyertakan gaya Font Awesome
+> (`fas`/`fab`), mis. `fas fa-link` atau `fab fa-github`. Tanpa awalan gaya, ikon tidak
+> akan tampil. Pada `INDONESIA_VALUES`/`INDONESIA_ACTIVITIES`/`EXPLORE_SECTIONS`, awalan
+> `fas` ditambahkan otomatis oleh template.
 
 ### Halaman product planning — `src/data/product-planning.ts`
 

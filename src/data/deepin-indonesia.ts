@@ -18,6 +18,23 @@ export const INDONESIA_PAGE = {
     'deepin Indonesia adalah komunitas resmi pengguna deepin Linux di Indonesia — wadah bagi siapa saja yang ingin mengenal, menggunakan, dan ikut mengembangkan deepin di Tanah Air.',
   introDetail:
     'Kami membantu pengguna baru maupun berpengalaman: menyediakan panduan berbahasa Indonesia, menerjemahkan istilah teknis, menyebarkan kabar rilis terbaru, serta menjadi tempat bertanya ketika menemui kendala instalasi atau penggunaan sehari-hari.',
+  introSupport:
+    'Komunitas ini berdiri dan tumbuh atas dukungan deepin main community, yaitu Wuhan Deepin Technology Co., Ltd. selaku pengembang resmi Sistem Operasi deepin.',
+} as const;
+
+/**
+ * Dukungan & pengakuan resmi dari deepin main community.
+ * Komunitas deepin Indonesia tidak berdiri sendiri — keberadaannya didukung
+ * dan diakui oleh pengembang resmi deepin.
+ */
+export const INDONESIA_SUPPORT = {
+  label: 'Didukung oleh',
+  org: 'Wuhan Deepin Technology Co., Ltd.',
+  alias: 'deepin main community',
+  role: 'Pengembang resmi Sistem Operasi deepin',
+  description:
+    'Komunitas deepin Indonesia berdiri atas dukungan deepin main community — Wuhan Deepin Technology Co., Ltd., pengembang resmi Sistem Operasi deepin. Dukungan tersebut diwujudkan melalui pengakuan resmi komunitas, penunjukan Official deepin Global Ambassador for Indonesia, serta akses koordinasi dan informasi langsung dengan tim deepin.',
+  links: [{ label: 'deepin.org', url: 'https://www.deepin.org', icon: 'fas fa-globe' }],
 } as const;
 
 /** Nilai / prinsip komunitas. */
@@ -111,12 +128,14 @@ export const COMMUNITY_LEADS = [
   {
     name: 'Zaky NR',
     role: 'Lead, deepin Indonesia Community',
-    badge: 'deepin Global Ambassador',
-    badgeDetail: 'Official deepin Global Ambassador for Indonesia',
+    badge: 'Official deepin Global Ambassador for Indonesia',
+    badgeDetail: 'Certificate of Appointment — Wuhan Deepin Technology Co., Ltd.',
     photo: '/images/zaky-nr.jpg',
-    bio: 'Memimpin komunitas deepin Indonesia sekaligus menjadi perwakilan resmi deepin untuk Indonesia di forum global — menjembatani pengguna, kontributor, dan tim deepin pusat.',
+    bio: 'Memimpin komunitas deepin Indonesia sekaligus menjadi perwakilan resmi deepin untuk Indonesia — menjembatani pengguna, kontributor, dan deepin main community.',
+    certificate:
+      'This is to officially appoint Mr. Zaky NR as the Official deepin Global Ambassador for Indonesia. This appointment recognizes and authorizes Mr. Zaky NR to represent deepin officially in Indonesia, promoting the deepin OS and engaging with the local community.',
     links: [
-      { label: 'zaky.siberin.id', url: 'https://zaky.siberin.id', icon: 'fa-globe' },
+      { label: 'Website', url: 'https://zaky.siberin.id', icon: 'fas fa-link' },
       { label: 'GitHub', url: 'https://github.com/JackTekno', icon: 'fab fa-github' },
     ],
   },
@@ -132,7 +151,7 @@ export const INDONESIA_FAQ: FaqItem[] = [
   {
     question: 'Apakah deepin Indonesia bagian dari deepin Technology?',
     answer:
-      'Tidak. deepin Indonesia adalah komunitas independen yang dibentuk oleh pengguna di Indonesia. Kami mengikuti perkembangan resmi deepin dan merangkum informasinya, tetapi bukan bagian dari perusahaan pengembang deepin.',
+      'deepin Indonesia adalah komunitas pengguna di Indonesia yang berdiri atas dukungan deepin main community, yaitu Wuhan Deepin Technology Co., Ltd. selaku pengembang resmi Sistem Operasi deepin. Dukungan itu diwujudkan melalui pengakuan resmi komunitas dan penunjukan Official deepin Global Ambassador for Indonesia, sehingga kami dapat menyalurkan informasi dan aspirasi pengguna Indonesia langsung ke tim deepin.',
   },
   {
     question: 'Bagaimana cara bergabung dengan komunitas deepin Indonesia?',
