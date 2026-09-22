@@ -1,4 +1,4 @@
-import type { FaqItem, PlanItem } from '@/types';
+import type { FaqItem } from '@/types';
 
 /**
  * Konten halaman utama `about.deepin.id` — "deepin Indonesia".
@@ -19,14 +19,6 @@ export const INDONESIA_PAGE = {
   introDetail:
     'Kami membantu pengguna baru maupun berpengalaman: menyediakan panduan berbahasa Indonesia, menerjemahkan istilah teknis, menyebarkan kabar rilis terbaru, serta menjadi tempat bertanya ketika menemui kendala instalasi atau penggunaan sehari-hari.',
 } as const;
-
-/** Fakta singkat komunitas, ditampilkan di samping narasi pengantar. */
-export const INDONESIA_FACTS = [
-  { icon: 'fa-flag', label: 'Didirikan', value: '2025' },
-  { icon: 'fa-comments', label: 'Basis komunitas', value: 'Telegram' },
-  { icon: 'fa-language', label: 'Bahasa utama', value: 'Indonesia' },
-  { icon: 'fa-layer-group', label: 'Fokus', value: 'deepin 25 & 26' },
-] as const;
 
 /** Nilai / prinsip komunitas. */
 export const INDONESIA_VALUES = [
@@ -89,10 +81,8 @@ export const EXPLORE_SECTIONS = [
     description:
       'Rencana resmi tim deepin untuk versi berikutnya: jadwal rilis, sasaran fitur, dan area optimasi yang sedang dikerjakan.',
     icon: 'fa-route',
-    anchor: '#product-planning',
     url: '/product-planning/',
     cta: 'Buka halaman lengkap',
-    available: true,
   },
   {
     id: 'original-apps',
@@ -101,9 +91,8 @@ export const EXPLORE_SECTIONS = [
     description:
       'Aplikasi orisinal buatan deepin yang dirancang menyatu dengan sistem — dari File Manager hingga App Store.',
     icon: 'fa-shapes',
-    anchor: '#original-apps',
+    url: '/original-apps/',
     cta: 'Lihat daftar aplikasi',
-    available: false,
   },
   {
     id: 'desktop-environment',
@@ -112,149 +101,24 @@ export const EXPLORE_SECTIONS = [
     description:
       'Lingkungan desktop deepin yang indah dan ringan, kini berjalan di atas Treeland — compositor Wayland milik deepin.',
     icon: 'fa-desktop',
-    anchor: '#desktop-environment',
+    url: '/desktop-environment/',
     cta: 'Kenali DDE & Treeland',
-    available: false,
   },
 ] as const;
 
-/** Aplikasi orisinal deepin yang paling sering dipakai. */
-export const ORIGINAL_APPS: PlanItem[] = [
+/** Pengurus komunitas deepin Indonesia. */
+export const COMMUNITY_LEADS = [
   {
-    title: 'File Manager',
-    description:
-      'Manajemen berkas modern dengan tab, pencarian cepat, pemrosesan batch, dan pratinjau langsung.',
-    tags: ['Berkas'],
-  },
-  {
-    title: 'Terminal',
-    description:
-      'Emulator terminal yang mendukung split view, tema, quake mode, serta kustomisasi perintah favorit.',
-    tags: ['Perintah'],
-  },
-  {
-    title: 'App Store',
-    description:
-      'Toko aplikasi terintegrasi dengan kurasi, kategori jelas, dan pemasangan satu klik untuk paket Linyaps maupun APT.',
-    tags: ['Linyaps', 'APT'],
-  },
-  {
-    title: 'Text Editor',
-    description:
-      'Editor ringan dengan penomoran baris, pencarian lanjutan, dan tampilan Markdown yang nyaman.',
-    tags: ['Markdown'],
-  },
-  {
-    title: 'Document Viewer',
-    description:
-      'Pembaca PDF dan dokumen dengan anotasi, pencarian teks, serta mode nyaman untuk mata.',
-    tags: ['PDF'],
-  },
-  {
-    title: 'Image Viewer',
-    description:
-      'Penampil gambar cepat dengan rotasi, pemotongan sederhana, dan dukungan format yang luas.',
-    tags: ['Gambar'],
-  },
-  {
-    title: 'Music & Movie',
-    description:
-      'Pemutar musik dan video bawaan dengan pengelolaan playlist, subtitle, serta dukungan codec umum.',
-    tags: ['Media'],
-  },
-  {
-    title: 'Screenshot & Screen Recorder',
-    description:
-      'Menangkap layar, jendela, atau area tertentu, sekaligus merekam aktivitas layar dengan mudah.',
-    tags: ['Utilitas'],
-  },
-  {
-    title: 'System Monitor',
-    description:
-      'Memantau penggunaan CPU, memori, jaringan, dan proses yang berjalan secara real-time.',
-    tags: ['Monitoring'],
-  },
-  {
-    title: 'Voice Notes',
-    description:
-      'Mencatat suara dengan transkripsi menjadi teks, memudahkan rapat dan kuliah tanpa menulis manual.',
-    tags: ['Produktivitas'],
-  },
-  {
-    title: 'Boot Maker',
-    description:
-      'Membuat USB bootable deepin dari berkas ISO dalam beberapa langkah sederhana.',
-    tags: ['Instalasi'],
-  },
-  {
-    title: 'Deepin Installer',
-    description:
-      'Pemasang sistem grafis dengan alur jelas, dukungan full-disk encryption, dan partisi otomatis.',
-    tags: ['Instalasi'],
-  },
-];
-
-/** Sorotan Deepin Desktop Environment (DDE) dan Treeland. */
-export const DDE_FEATURES: PlanItem[] = [
-  {
-    title: 'DDE 7.0 berbasis QML',
-    description:
-      'Seluruh antarmuka desktop ditulis ulang dengan QML sehingga animasi lebih halus dan tampilan lebih konsisten.',
-    tags: ['QML', 'DDE 7.0'],
-  },
-  {
-    title: 'Treeland (Wayland)',
-    description:
-      'Compositor Wayland mandiri milik deepin yang menghadirkan pengalaman desktop lebih mulus dan modern.',
-    tags: ['Treeland', 'Wayland'],
-  },
-  {
-    title: 'Dock & Launcher',
-    description:
-      'Panel aplikasi dengan mode efisien maupun mode fesyen, pencarian instan, dan pengelompokan jendela.',
-    tags: ['Dock'],
-  },
-  {
-    title: 'Control Center',
-    description:
-      'Pusat pengaturan yang menyatukan jaringan, tampilan, suara, notifikasi, dan pembaruan sistem.',
-    tags: ['Settings'],
-  },
-  {
-    title: 'Cross-Device Collaboration',
-    description:
-      'Menghubungkan deepin dengan perangkat lain untuk berbagi berkas, layar, dan papan klip.',
-    tags: ['Kolaborasi'],
-  },
-  {
-    title: 'Tema & Dark Mode',
-    description:
-      'Tema terang dan gelap yang konsisten di seluruh aplikasi, dengan aksen warna yang dapat diubah.',
-    tags: ['Tema'],
-  },
-];
-
-/** Tonggak penting komunitas deepin Indonesia. */
-export const INDONESIA_TIMELINE = [
-  {
-    year: '2025',
-    title: 'Komunitas deepin Indonesia didirikan',
-    desc: 'Wadah resmi bagi pengguna deepin di Indonesia dibentuk, dengan kanal Telegram sebagai pusat diskusi harian.',
-  },
-  {
-    year: '2025',
-    title: 'Kanal berbahasa Indonesia aktif',
-    desc: 'Panduan pemasangan, penyesuaian pasca-instalasi, dan tips harian mulai diterbitkan dalam Bahasa Indonesia.',
-  },
-  {
-    year: '2026',
-    title: 'Release notes terkurasi',
-    desc: 'Setiap rilis deepin 25 dirangkum dalam artikel Bahasa Indonesia agar pengguna mudah mengikuti perubahan.',
-  },
-  {
-    year: '2026',
-    title: 'Situs tentang deepin diluncurkan',
-    desc: 'Product planning, aplikasi orisinal, dan lingkungan desktop deepin tersedia dalam satu tempat di about.deepin.id.',
+    name: 'Zaky NR',
+    role: 'Lead, deepin Indonesia Community',
+    badge: 'deepin Global Ambassador',
+    badgeDetail: 'Official deepin Global Ambassador for Indonesia',
+    photo: '/images/zaky-nr.jpg',
+    bio: 'Memimpin komunitas deepin Indonesia sekaligus menjadi perwakilan resmi deepin untuk Indonesia di forum global — menjembatani pengguna, kontributor, dan tim deepin pusat.',
+    links: [
+      { label: 'zaky.siberin.id', url: 'https://zaky.siberin.id', icon: 'fa-globe' },
+      { label: 'GitHub', url: 'https://github.com/JackTekno', icon: 'fab fa-github' },
+    ],
   },
 ] as const;
 
@@ -283,6 +147,6 @@ export const INDONESIA_FAQ: FaqItem[] = [
   {
     question: 'Topik apa saja yang dibahas di halaman ini?',
     answer:
-      'Halaman ini menjelaskan komunitas deepin Indonesia, lalu dilanjutkan dengan tiga topik utama: Product Planning (roadmap versi dan rencana fitur), Original Apps (aplikasi orisinal deepin), serta Desktop Environment (DDE dan Treeland).',
+      'Halaman ini menjelaskan komunitas deepin Indonesia beserta pengurus dan kegiatannya. Setelah itu disediakan tautan ke tiga topik utama: Product Planning (roadmap versi dan rencana fitur), Original Apps (aplikasi orisinal deepin), serta Desktop Environment (DDE dan Treeland) yang masing-masing memiliki halaman tersendiri.',
   },
 ];

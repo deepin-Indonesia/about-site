@@ -5,27 +5,29 @@ Situs statis **deepin Indonesia** sekaligus pusat informasi **Tentang deepin**, 
 
 - **Produksi:** <https://about.deepin.id>
 - **Halaman:**
-  - `/` — **deepin Indonesia** (profil komunitas) + penjelasan Product Planning,
-    Original Apps, dan Desktop Environment dalam satu halaman
+  - `/` — **deepin Indonesia**: profil komunitas, pengurus, lalu tautan ke tiga topik
+    (Product Planning, Original Apps, Desktop Environment)
   - `/product-planning/` — roadmap versi & rencana fitur deepin
 - **Analytics:** Google Analytics 4 (`G-2J4TLB9W7H`) via `Analytics.astro`
 - **Deploy:** Cloudflare Pages, branch `main`
 
 > `about.deepin.id` adalah halaman **deepin Indonesia**. Halaman ini menjelaskan komunitasnya
-> terlebih dahulu, lalu dilanjutkan dengan tiga topik: Product Planning (punya halaman sendiri),
-> Original Apps, dan Desktop Environment.
+> terlebih dahulu, lalu menautkan tiga topik yang masing-masing punya halaman tersendiri:
+> Product Planning, Original Apps, dan Desktop Environment.
 
 ## Struktur
 
 ```
-src/
+1. Hero — identitas komunitas deepin Indonesia + logo.
 ├── components/        Header, Footer, Layout, Analytics
 ├── data/
-│   ├── site.ts        Konfigurasi situs, navigasi
-│   ├── deepin-indonesia.ts   Konten halaman utama (profil komunitas, apps, DDE, FAQ)
-│   └── product-planning.ts   Konten product planning (roadmap & rencana fitur)
-├── pages/
-│   ├── index.astro            Landing "deepin Indonesia"
+4. **Tentang deepin** — tiga kartu topik (Product Planning, Original Apps, Desktop Environment)
+   yang masing-masing menuju halaman tersendiri.
+5. Pengurus komunitas (Zaky NR — Lead & deepin Global Ambassador for Indonesia).
+6. FAQ (`FAQPage`) dan CTA.
+
+Penjelasan rinci tiap topik **tidak** diulang di halaman ini karena sudah punya halaman sendiri.
+Dua di antaranya (`/original-apps/`, `/desktop-environment/`) masih dalam pengerjaan.
 │   ├── 404.astro              Halaman tidak ditemukan
 │   └── product-planning/
 │       └── index.astro        Roadmap versi + rencana fitur deepin
@@ -126,6 +128,17 @@ window.deepinTrack('os_select', { arch: 'arm64' });
 `window.__gaReady === true` menandakan pelacakan siap (berguna untuk pengujian).
 
 ## Menambah / Memperbarui Konten
+
+### Halaman utama — `src/data/deepin-indonesia.ts`
+
+- `INDONESIA_PAGE` — judul, tagline, pengantar, dan tanggal pembaruan.
+- `INDONESIA_VALUES` — prinsip komunitas.
+- `INDONESIA_ACTIVITIES` — kegiatan komunitas beserta tautannya.
+- `EXPLORE_SECTIONS` — tiga kartu topik "Tentang deepin" (judul, deskripsi, ikon, URL, CTA).
+- `COMMUNITY_LEADS` — pengurus komunitas (nama, jabatan, badge, foto, bio, tautan).
+- `INDONESIA_FAQ` — pertanyaan umum yang juga menjadi schema `FAQPage`.
+
+### Halaman product planning — `src/data/product-planning.ts`
 
 Semua konten roadmap berada di `src/data/product-planning.ts`:
 
