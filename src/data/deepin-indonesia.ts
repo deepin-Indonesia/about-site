@@ -132,8 +132,6 @@ export const COMMUNITY_LEADS = [
     badgeDetail: 'Certificate of Appointment — Wuhan Deepin Technology Co., Ltd.',
     photo: '/images/zaky-nr.jpg',
     bio: 'Memimpin komunitas deepin Indonesia sekaligus menjadi perwakilan resmi deepin untuk Indonesia — menjembatani pengguna, kontributor, dan deepin main community.',
-    certificate:
-      'This is to officially appoint Mr. Zaky NR as the Official deepin Global Ambassador for Indonesia. This appointment recognizes and authorizes Mr. Zaky NR to represent deepin officially in Indonesia, promoting the deepin OS and engaging with the local community.',
     links: [
       { label: 'Website', url: 'https://zaky.siberin.id', icon: 'fas fa-link' },
       { label: 'GitHub', url: 'https://github.com/JackTekno', icon: 'fab fa-github' },
