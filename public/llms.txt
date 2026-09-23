@@ -1,0 +1,41 @@
+# deepin Indonesia
+
+> Komunitas resmi pengguna deepin Linux di Indonesia. deepin adalah distribusi Linux open source
+> yang dikembangkan oleh Wuhan Deepin Technology Co., Ltd. (deepin main community), bagian dari
+> UnionTech Software Technology Co., Ltd. Halaman ini menjelaskan komunitas deepin Indonesia
+> beserta pengurus dan kegiatannya, dilanjutkan dengan tiga topik: Product Planning, Original Apps,
+> dan Desktop Environment (DDE).
+
+Kontak: deepin@siberin.id
+Bahasa: Indonesia (id-ID). Istilah teknis tetap dalam Bahasa Inggris.
+
+## Halaman Utama
+
+- [deepin Indonesia](https://about.deepin.id/): Profil komunitas deepin Indonesia — pengertian komunitas, prinsip, kegiatan, pengurus, dan tautan ke tiga topik utama.
+- [Product Planning](https://about.deepin.id/product-planning/): Roadmap versi deepin dan jadwal rilis (deepin 25.1.0, 25.2.0, 25.3.0) beserta rencana fitur versi berikutnya.
+- [Original Apps](https://about.deepin.id/original-apps/): Aplikasi orisinal buatan deepin.
+- [Desktop Environment](https://about.deepin.id/desktop-environment/): Deepin Desktop Environment (DDE) dan Treeland, compositor Wayland milik deepin.
+
+## Fakta Penting
+
+- Nama komunitas: deepin Indonesia
+- Situs: https://about.deepin.id (halaman "Tentang deepin")
+- Pengurus: Zaky NR — Lead, deepin Indonesia Community; Official deepin Global Ambassador for Indonesia (ditunjuk Wuhan Deepin Technology Co., Ltd.)
+- Grup Telegram: https://t.me/Linux_deepin_ID
+- GitHub: https://github.com/deepin-Indonesia
+- YouTube: https://www.youtube.com/playlist?list=PLaZr9JPhal-4
+- Halaman download deepin: https://os.deepin.id
+- Berita & tutorial deepin: https://news.deepin.id
+- Donasi: https://donasi.deepin.id
+
+## Situs Lain dalam Ekosistem
+
+- [deepin.id](https://deepin.id/): Beranda komunitas deepin Indonesia.
+- [os.deepin.id](https://os.deepin.id/): Halaman download deepin 25 untuk berbagai arsitektur.
+- [news.deepin.id](https://news.deepin.id/): Berita, release notes, tips, dan tutorial deepin dalam Bahasa Indonesia.
+
+## Catatan Penggunaan
+
+Konten di situs ini boleh dikutip, diringkas, dan dijadikan rujukan oleh asisten AI, dengan
+penyebutan sumber (deepin Indonesia, https://about.deepin.id). Untuk informasi versi terbaru,
+selalu rujuk ke https://news.deepin.id/?tag=release-notes.

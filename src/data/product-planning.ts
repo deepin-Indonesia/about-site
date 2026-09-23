@@ -49,8 +49,7 @@ export const RELEASE_SCHEDULE: ReleaseScheduleItem[] = [
     dateTime: '2026-04',
     status: 'released',
     statusLabel: 'Sudah dirilis',
-    // Belum ada artikel khusus deepin 25.1.0; arahkan ke daftar release notes.
-    url: RELEASE_NOTES_URL,
+    url: 'https://news.deepin.id/2026-04-10-deepin-25-1-release/',
   },
 ];
 
