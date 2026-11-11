@@ -30,3 +30,7 @@
 /indonesia  /  301
 /tentang-deepin/*  /  301
 /tentang-deepin  /  301
+
+# Kebijakan privasi dipusatkan di situs utama (deepin.id)
+/privacy/  https://deepin.id/privacy/  301
+/privacy  https://deepin.id/privacy/  301
