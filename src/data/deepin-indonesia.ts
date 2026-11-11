@@ -128,7 +128,7 @@ export const EXPLORE_SECTIONS = [
     description:
       'Aplikasi orisinal buatan deepin yang dirancang menyatu dengan sistem — dari File Manager hingga App Store.',
     icon: 'fa-shapes',
-    url: '/original-apps/',
+    url: '#original-apps',
     cta: 'Lihat daftar aplikasi',
   },
   {
@@ -138,7 +138,7 @@ export const EXPLORE_SECTIONS = [
     description:
       'Lingkungan desktop deepin yang indah dan ringan, kini berjalan di atas Treeland — compositor Wayland milik deepin.',
     icon: 'fa-desktop',
-    url: '/desktop-environment/',
+    url: '#desktop-environment',
     cta: 'Kenali DDE & Treeland',
   },
 ] as const;
@@ -189,6 +189,6 @@ export const INDONESIA_FAQ: FaqItem[] = [
   {
     question: 'Topik apa saja yang dibahas di halaman ini?',
     answer:
-      'Halaman ini menjelaskan komunitas deepin Indonesia beserta pengurus dan kegiatannya. Setelah itu disediakan tautan ke tiga topik utama: Product Planning (roadmap versi dan rencana fitur), Original Apps (aplikasi orisinal deepin), serta Desktop Environment (DDE dan Treeland) yang masing-masing memiliki halaman tersendiri.',
+      'Halaman ini menjelaskan komunitas deepin Indonesia beserta pengurus dan kegiatannya. Setelah itu tersedia tiga topik utama: Product Planning (roadmap versi dan rencana fitur) memiliki halaman tersendiri, sedangkan Original Apps (aplikasi orisinal deepin) serta Desktop Environment (DDE dan Treeland) dijelaskan langsung di halaman ini.',
   },
 ];

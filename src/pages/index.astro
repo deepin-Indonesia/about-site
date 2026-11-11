@@ -361,6 +361,103 @@ const softwareSchema = {
     </div>
   </section>
 
+  <!-- ================= ORIGINAL APPS ================= -->
+  <section id="original-apps" class="py-20 bg-gray-50 scroll-mt-24" aria-labelledby="original-apps-title">
+    <div class="container-main">
+      <div class="text-center mb-14 max-w-3xl mx-auto">
+        <span class="section-eyebrow">
+          <i class="fas fa-shapes text-[10px]" aria-hidden="true" /> Original Apps
+        </span>
+        <h2 id="original-apps-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900">
+          Aplikasi Orisinal <span class="text-deepin-600">deepin</span>
+        </h2>
+        <p class="mt-4 text-gray-500 leading-relaxed">
+          deepin membangun sendiri aplikasi-aplikasi intinya, bukan sekadar membundel program pihak
+          ketiga. Semuanya gratis, open source, dan dirancang agar terasa menyatu dengan desktop.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {[
+          { icon: 'fa-folder-tree', title: 'File Manager', desc: 'Penjelajah berkas dengan tab, tree-style sidebar, dan pencarian cepat bernama Global Search.' },
+          { icon: 'fa-store', title: 'App Store', desc: 'Toko aplikasi untuk memasang aplikasi native maupun Linyaps dengan satu klik.' },
+          { icon: 'fa-image', title: 'Image Viewer', desc: 'Melihat sekaligus mengedit gambar: crop, rotate, markup, teks, mosaic, dan blur.' },
+          { icon: 'fa-file-lines', title: 'Document Viewer', desc: 'Membaca PDF dan dokumen, mengingat posisi baca, serta menyediakan tiga mode eye-care.' },
+          { icon: 'fa-pen-nib', title: 'Text Editor', desc: 'Editor teks ringan dengan Markdown rendering dan pengalaman pencarian yang nyaman.' },
+          { icon: 'fa-music', title: 'Music', desc: 'Pemutar musik dengan playlist, lirik, dan dukungan berbagai format audio populer.' },
+          { icon: 'fa-film', title: 'Movie', desc: 'Pemutar video dengan hardware decoding agar pemutaran tetap mulus dan hemat daya.' },
+          { icon: 'fa-calendar-days', title: 'Calendar', desc: 'Kalender dengan pengingat, tampilan agenda, dan dukungan third-party schedule.' },
+          { icon: 'fa-camera', title: 'Camera', desc: 'Aplikasi kamera sederhana untuk mengambil foto dan merekam video.' },
+          { icon: 'fa-file-zipper', title: 'Archive Manager', desc: 'Mengelola arsip ZIP, TAR, 7z, dan format kompresi populer lainnya.' },
+          { icon: 'fa-terminal', title: 'Terminal', desc: 'Terminal default dengan tema, tab, dan pengalaman command line yang nyaman.' },
+          { icon: 'fa-screwdriver-wrench', title: 'PC Manager', desc: 'Pemeriksaan sistem, pembersihan disk, dan troubleshooting dalam satu aplikasi.' },
+        ].map((app) => (
+          <article class="card p-6 group hover:-translate-y-1 transition-all duration-300">
+            <div class="w-11 h-11 rounded-xl bg-deepin-50 flex items-center justify-center mb-4 group-hover:bg-deepin-100 transition-colors">
+              <i class={`fas ${app.icon} text-lg text-deepin-600`} aria-hidden="true" />
+            </div>
+            <h3 class="font-bold text-gray-900 text-sm mb-1.5">{app.title}</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">{app.desc}</p>
+          </article>
+        ))}
+      </div>
+
+      <p class="text-center text-sm text-gray-500 mt-10">
+        Ingin melihat daftar lengkap?{' '}
+        <a href="https://github.com/linuxdeepin" target="_blank" rel="noopener" class="text-deepin-600 font-semibold hover:underline">
+          Jelajahi repositori deepin di GitHub <i class="fas fa-external-link-alt text-[10px]" aria-hidden="true" />
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= DESKTOP ENVIRONMENT ================= -->
+  <section id="desktop-environment" class="py-20 bg-white scroll-mt-24" aria-labelledby="desktop-environment-title">
+    <div class="container-main">
+      <div class="text-center mb-14 max-w-3xl mx-auto">
+        <span class="section-eyebrow">
+          <i class="fas fa-desktop text-[10px]" aria-hidden="true" /> Desktop Environment
+        </span>
+        <h2 id="desktop-environment-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900">
+          deepin <span class="text-deepin-600">Desktop Environment</span>
+        </h2>
+        <p class="mt-4 text-gray-500 leading-relaxed">
+          <strong>DDE (Deepin Desktop Environment)</strong> adalah lingkungan desktop yang dirancang dari nol
+          untuk keindahan dan kemudahan. Di deepin 25, DDE berjalan di atas <strong>Treeland</strong> —
+          Wayland compositor milik deepin.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {[
+          { icon: 'fa-window-restore', title: 'DDE 7.0', desc: 'Antarmuka berbasis QML yang modern, halus, dan konsisten di seluruh aplikasi.' },
+          { icon: 'fa-layer-group', title: 'Treeland', desc: 'Wayland compositor deepin untuk window management dan input yang lebih mulus.' },
+          { icon: 'fa-wand-magic-sparkles', title: 'Flow Design', desc: 'Animasi dan transisi dirancang mengalir, menghadirkan alur yang natural tanpa hambatan.' },
+          { icon: 'fa-display', title: 'Multi-monitor', desc: 'Dukungan cloning, extending, serta pengaturan resolusi dan scaling per layar.' },
+          { icon: 'fa-sliders', title: 'Control Center', desc: 'Pusat pengaturan sistem: jaringan, tampilan, suara, daya, dan personalisasi.' },
+          { icon: 'fa-shield-halved', title: 'Freeze Protection', desc: 'Sejak deepin 25.3.0, taskbar dan Launcher tetap bisa dibuka saat sistem macet.' },
+        ].map((feature) => (
+          <article class="card p-6 group hover:-translate-y-1 transition-all duration-300">
+            <div class="w-11 h-11 rounded-xl bg-deepin-50 flex items-center justify-center mb-4 group-hover:bg-deepin-100 transition-colors">
+              <i class={`fas ${feature.icon} text-lg text-deepin-600`} aria-hidden="true" />
+            </div>
+            <h3 class="font-bold text-gray-900 text-sm mb-1.5">{feature.title}</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">{feature.desc}</p>
+          </article>
+        ))}
+      </div>
+
+      <p class="text-center text-sm text-gray-500 mt-10">
+        Pelajari lebih lanjut di{' '}
+        <a href="https://www.deepin.org" target="_blank" rel="noopener" class="text-deepin-600 font-semibold hover:underline">
+          situs resmi deepin <i class="fas fa-external-link-alt text-[10px]" aria-hidden="true" />
+        </a>
+        , atau baca kabar rilis terbaru di{' '}
+        <a href="https://news.deepin.id/?tag=release-notes" class="text-deepin-600 font-semibold hover:underline">news.deepin.id</a>.
+      </p>
+    </div>
+  </section>
+
   <!-- ================= PENGURUS KOMUNITAS ================= -->
   <section class="py-20 bg-gray-50" aria-labelledby="pengurus-title">
     <div class="container-main">

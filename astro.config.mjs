@@ -10,7 +10,7 @@ import tailwindcss from '@tailwindcss/vite';
  */
 const CONTENT_UPDATED = {
   '/': '2026-09-22',
-  '/product-planning/': '2026-09-14',
+  '/product-planning/': '2026-11-11',
 };
 
 export default defineConfig({

@@ -13,7 +13,7 @@ export const PLANNING_PAGE = {
   title: 'Product Planning',
   headline: 'Product Planning deepin',
   tagline: 'Roadmap versi & rencana fitur deepin',
-  updated: '2026-09-14',
+  updated: '2026-11-11',
   intro:
     'Agar pengguna komunitas selalu mendapat informasi terbaru mengenai roadmap versi Sistem Operasi deepin (selanjutnya disebut "deepin"), tim deepin mengumumkan rencana sasaran (planned objectives) untuk versi pre-release berikutnya sebelum versi tersebut diluncurkan.',
   introDetail:
@@ -28,10 +28,11 @@ export const RELEASE_SCHEDULE: ReleaseScheduleItem[] = [
   {
     version: 'deepin 25.3.0',
     slug: 'deepin-25-3-0',
-    timeline: 'Oktober 2026',
-    dateTime: '2026-10',
-    status: 'planned',
-    statusLabel: 'Akan dirilis',
+    timeline: 'November 2026',
+    dateTime: '2026-11',
+    status: 'released',
+    statusLabel: 'Sudah dirilis',
+    url: 'https://news.deepin.id/2026-11-11-deepin-25-3-release/',
   },
   {
     version: 'deepin 25.2.0',
@@ -57,9 +58,9 @@ export const RELEASE_SCHEDULE: ReleaseScheduleItem[] = [
 export const NEXT_RELEASE = {
   version: 'deepin 25.3.0',
   slug: 'deepin-25-3-0',
-  timeline: 'Oktober 2026',
-  dateTime: '2026-10',
-  statusLabel: 'Akan dirilis',
+  timeline: 'November 2026',
+  dateTime: '2026-11',
+  statusLabel: 'Sudah dirilis',
 } as const;
 
 /** Kategori rencana fitur deepin 25.3.0. */
@@ -186,12 +187,12 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: 'Kapan deepin 25.3.0 dirilis?',
     answer:
-      'deepin 25.3.0 dijadwalkan pada Oktober 2026. Jadwal dapat berubah sewaktu-waktu; pantau release notes resmi deepin untuk kepastian tanggal rilis.',
+      'deepin 25.3.0 telah dirilis pada November 2026. Release notes lengkap beserta daftar fitur dan perbaikannya tersedia di halaman berita komunitas deepin Indonesia.',
   },
   {
     question: 'Versi deepin apa yang sudah dirilis pada 2026?',
     answer:
-      'deepin 25.1.0 telah dirilis pada April 2026 dan deepin 25.2.0 pada Juli 2026. Versi berikutnya yang direncanakan adalah deepin 25.3.0 pada Oktober 2026.',
+      'Sepanjang 2026, deepin telah merilis deepin 25.1.0 (April 2026), deepin 25.2.0 (Juli 2026), dan deepin 25.3.0 (November 2026).',
   },
   {
     question: 'Apakah rencana fitur deepin 25.3.0 pasti masuk ke versi final?',
