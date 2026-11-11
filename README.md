@@ -1,171 +1,205 @@
-# about-site — deepin Indonesia
+<div align="center">
 
-Situs statis **deepin Indonesia** sekaligus pusat informasi **Tentang deepin**, dibangun dengan
-[Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com).
+# deepin Indonesia — About Site
 
-- **Produksi:** <https://about.deepin.id>
-- **Halaman:**
-  - `/` — **deepin Indonesia**: profil komunitas, pengurus, lalu tautan ke tiga topik
-    (Product Planning, Original Apps, Desktop Environment)
-  - `/product-planning/` — roadmap versi & rencana fitur deepin
-- **Analytics:** Google Analytics 4 (`G-2J4TLB9W7H`) via `Analytics.astro`
-- **Deploy:** Cloudflare Pages, branch `main`
+**Situs "Tentang deepin" & product planning**
 
-> `about.deepin.id` adalah halaman **deepin Indonesia**. Halaman ini menjelaskan komunitasnya
-> terlebih dahulu, lalu menautkan tiga topik yang masing-masing punya halaman tersendiri:
-> Product Planning, Original Apps, dan Desktop Environment.
+[about.deepin.id](https://about.deepin.id) · 🇮🇩 **Bahasa Indonesia** · [🇬🇧 English](README.en.md)
 
-## Struktur
+</div>
+
+---
+
+Situs statis **deepin Indonesia** sekaligus pusat informasi **Tentang deepin**: profil komunitas, pengurus, aplikasi orisinal, desktop environment, dan roadmap versi. Dibangun dengan [Astro](https://astro.build) + [Tailwind CSS v4](https://tailwindcss.com).
+
+## Daftar Isi
+
+- [Tentang Proyek](#tentang-proyek)
+- [Halaman](#halaman)
+- [Fitur](#fitur)
+- [Tech Stack](#tech-stack)
+- [Struktur Proyek](#struktur-proyek)
+- [Memulai](#memulai)
+- [Mengubah Konten](#mengubah-konten)
+- [Deployment](#deployment)
+- [SEO, Performa & AdSense](#seo-performa--adsense)
+- [Analitik](#analitik)
+- [Berkontribusi](#berkontribusi)
+- [Lisensi](#lisensi)
+
+## Tentang Proyek
+
+`about-site` adalah halaman **deepin Indonesia** di **https://about.deepin.id**. Halaman ini menjelaskan komunitasnya terlebih dahulu, lalu menyajikan tiga topik utama: **Product Planning**, **Original Apps**, dan **Desktop Environment (DDE/Treeland)**.
+
+### Ekosistem deepin Indonesia
+
+| Subdomain | Repo | Fungsi |
+|---|---|---|
+| [deepin.id](https://deepin.id) | `home-site` | Halaman utama |
+| [os.deepin.id](https://os.deepin.id) | `download-site` | Download image deepin |
+| [news.deepin.id](https://news.deepin.id) | `news-site` | Berita & artikel |
+| [about.deepin.id](https://about.deepin.id) | `about-site` ← repo ini | Tentang & product planning |
+| [donasi.deepin.id](https://donasi.deepin.id) | `donasi-site` | Donasi komunitas |
+
+## Halaman
+
+| Route | Isi |
+|---|---|
+| `/` | Profil komunitas: hero, pengantar, kegiatan, tiga kartu topik, section `#original-apps` & `#desktop-environment`, pengurus, FAQ, CTA |
+| `/product-planning/` | Roadmap versi (jadwal rilis), fitur deepin 25.3.0, disclaimer, FAQ |
+
+## Fitur
+
+- **Profil komunitas** lengkap dengan pengurus dan dukungan resmi deepin.
+- **Section Original Apps** — 12 aplikasi orisinal deepin.
+- **Section Desktop Environment** — DDE 7.0 & Treeland.
+- **Product Planning** — jadwal rilis, status versi, dan sorotan fitur.
+- **Structured data kaya**: `AboutPage`, `ItemList`, `Person`, `FAQPage`, `SoftwareApplication`, `TechArticle`, dan `BreadcrumbList`.
+- **Sitemap dengan `lastmod` akurat** per halaman (bukan tanggal build).
+- **`_redirects`** untuk URL lama + redirect `/privacy/` ke halaman utama.
+
+## Tech Stack
+
+| Teknologi | Detail |
+|---|---|
+| **Framework** | [Astro 7](https://astro.build) |
+| **Styling** | [Tailwind CSS v4](https://tailwindcss.com) |
+| **Bahasa** | TypeScript (`strict`), alias `@/*` → `src/*` |
+| **Ikon** | [Font Awesome 6](https://fontawesome.com) (CDN) |
+| **Sitemap** | `@astrojs/sitemap` dengan `lastmod` per halaman |
+| **Analitik** | Google Analytics 4 — `G-2J4TLB9W7H` |
+| **Iklan** | Google AdSense — `ca-pub-1345939033565649` |
+| **Deploy** | [Cloudflare Pages](https://pages.cloudflare.com) |
+| **Runtime** | Node.js 20+ |
+
+## Struktur Proyek
 
 ```
-1. Hero — identitas komunitas deepin Indonesia + logo.
-├── components/        Header, Footer, Layout, Analytics
-├── data/
-4. **Tentang deepin** — tiga kartu topik (Product Planning, Original Apps, Desktop Environment)
-   yang masing-masing menuju halaman tersendiri.
-5. Pengurus komunitas (Zaky NR — Lead & deepin Global Ambassador for Indonesia).
-6. FAQ (`FAQPage`) dan CTA.
-
-Penjelasan rinci tiap topik **tidak** diulang di halaman ini karena sudah punya halaman sendiri.
-Dua di antaranya (`/original-apps/`, `/desktop-environment/`) masih dalam pengerjaan.
-│   ├── 404.astro              Halaman tidak ditemukan
-│   └── product-planning/
-│       └── index.astro        Roadmap versi + rencana fitur deepin
-├── styles/global.css  Tema Tailwind (palet deepin)
-└── types.ts           Tipe TypeScript bersama
+about-site/
+├── src/
+│   ├── components/
+│   │   ├── Layout.astro      # <head>, SEO, schema, AdSense, hreflang, preload LCP
+│   │   ├── Header.astro
+│   │   ├── Footer.astro
+│   │   └── Analytics.astro
+│   ├── data/
+│   │   ├── deepin-indonesia.ts   # Konten halaman utama (/)
+│   │   ├── product-planning.ts   # Konten halaman /product-planning/
+│   │   └── site.ts               # Konfigurasi situs & navigasi
+│   ├── pages/
+│   │   ├── index.astro           # Halaman komunitas
+│   │   ├── 404.astro             # 404 (noindex)
+│   │   └── product-planning/
+│   │       └── index.astro       # Product planning
+│   └── styles/
+│       └── global.css            # Tailwind + palet deepin + .section-eyebrow
+├── public/
+│   ├── images/                   # Logo, foto pengurus, OG image
+│   ├── _redirects                # URL lama + redirect privasi
+│   ├── ads.txt
+│   ├── robots.txt
+│   ├── llms.txt
+│   └── site.webmanifest
+├── astro.config.mjs              # site, sitemap lastmod (CONTENT_UPDATED)
+├── tsconfig.json
+└── package.json
 ```
 
-## Perintah
+## Memulai
 
-| Perintah          | Kegunaan                                     |
-| ----------------- | -------------------------------------------- |
-| `npm install`     | Memasang dependensi                          |
-| `npm run dev`     | Menjalankan server pengembangan di `:4321`   |
-| `npm run build`   | Build produksi ke `dist/`                    |
-| `npm run preview` | Menjalankan hasil build secara lokal         |
+### Prasyarat
 
-## Bahasa & Konvensi Penulisan
+- [Node.js](https://nodejs.org) 20+
+- npm
 
-- Narasi dan antarmuka memakai **Bahasa Indonesia**.
-- Istilah teknis (mis. *Immutable System*, *Linyaps*, *Wayland*, *snapshot*, *release notes*)
-  tetap dalam **Bahasa Inggris** agar konsisten dengan dokumentasi resmi deepin.
+### Instalasi & pengembangan
 
-## SEO
-
-- Meta description, keywords, canonical, dan `hreflang` (`id-ID`, `x-default`) per halaman.
-- Judul ≤ 62 karakter dan deskripsi ≤ 155 karakter agar tidak terpotong di hasil pencarian.
-- Open Graph + Twitter Card dengan gambar 1200×630 (`/images/og-about.png`),
-  `og:image:type`, dan dimensi yang sesuai gambar asli.
-- JSON-LD: `Organization`, `WebSite`, `BreadcrumbList`, `AboutPage`, `ItemList`,
-  `TechArticle`, `FAQPage`, dan `SoftwareApplication`.
-- Sitemap otomatis (`@astrojs/sitemap`) dengan `lastmod` per halaman sesuai tanggal
-  pembaruan konten (lihat `CONTENT_UPDATED` di `astro.config.mjs`), plus `public/robots.txt`.
-- Halaman 404 memakai `noindex, follow` dan tidak dikirim `hreflang`.
-- `public/site.webmanifest` untuk metadata PWA (nama, ikon, warna tema).
-- Struktur heading hierarkis, tabel semantik, `<time>`, serta ARIA label.
-- Ikon dekoratif diberi `aria-hidden`, tautan ikon-saja diberi `aria-label`,
-  dan semua gambar punya `alt` + `width`/`height` (mencegah layout shift).
-- Resource hints: `preconnect` ke cdnjs + GTM, `dns-prefetch` ke GA, serta
-  `preload` gambar LCP (`preloadImage` pada `Layout`).
-- `public/_redirects` memetakan URL lama (`/Indonesia`, `/tentang-deepin/*`) ke halaman utama.
-
-> Saat mengubah konten, perbarui juga tanggal di `CONTENT_UPDATED`
-> (`astro.config.mjs`), `INDONESIA_PAGE.updated`, dan `PLANNING_PAGE.updated`.
-
-## Struktur Halaman Utama (`/`)
-
-1. Hero — identitas komunitas + fakta singkat.
-2. Pengantar "Apa itu deepin Indonesia?" + prinsip komunitas.
-3. Kegiatan komunitas (edukasi, release notes, diskusi, event).
-4. Ringkasan tiga topik: Product Planning, Original Apps, Desktop Environment.
-5. `#product-planning` — ringkasan roadmap + sorotan versi berikutnya.
-6. `#original-apps` — daftar aplikasi orisinal deepin.
-7. `#desktop-environment` — DDE 7.0 & Treeland.
-8. Timeline komunitas, FAQ (`FAQPage`), dan CTA.
-
-Anchor `#original-apps` dan `#desktop-environment` dipakai oleh dropdown "Tentang deepin" di
-kelima subdomain sampai halaman khusus keduanya dibangun.
-
-## Analitik (Google Analytics 4)
-
-Measurement ID: `G-2J4TLB9W7H` (satu property untuk kelima subdomain).
-
-Pelacakan terpusat di `src/components/Analytics.astro` dan dirender sekali dari
-`src/components/Layout.astro` (`<Analytics />`), jadi **semua halaman otomatis
-terlacak** — tidak perlu menambah script per halaman.
-
-Setiap event membawa parameter `site` (dari `location.host`) supaya data tiap
-subdomain bisa dipisah di GA4. `site` juga dikirim sebagai *user property* agar
-`page_view` ikut terpisah.
-
-| Event | Dipicu oleh |
-| --- | --- |
-| `page_view` | Otomatis setiap halaman |
-| `page_context` | Referrer, viewport, ukuran layar, bahasa, `utm_*` |
-| `page_404` | Halaman tidak ditemukan (+ path-nya) |
-| `scroll_depth` | Scroll 25/50/75/90/100% |
-| `engaged_reader` | 30/60/180/600 detik benar-benar aktif |
-| `visibility_change` | Tab berpindah/aktif kembali |
-| `nav_click` | Klik menu di header atau drawer mobile |
-| `dropdown_toggle` | Buka/tutup dropdown header ("Tentang deepin") |
-| `menu_toggle` | Buka/tutup hamburger mobile |
-| `menu_section_toggle` | Buka/tutup seksi di drawer mobile |
-| `cta_click` | Tombol `.btn-primary` / `.btn-outline` / `.btn-ghost` |
-| `footer_click` | Klik tautan di footer |
-| `internal_site_click` | Pindah ke subdomain `deepin.id` lain |
-| `outbound_click` | Keluar dari ekosistem `deepin.id` |
-| `anchor_click` | Lompat ke section (`#...`), mis. tombol hero |
-| `faq_toggle` | Buka accordion FAQ (`<details>`) |
-| `contact_click` | Klik `mailto:` atau `tel:` |
-| `copy_text` | Menyalin teks |
-| `scroll_top` | Tombol kembali ke atas |
-| `form_submit` | Mengirim form |
-| `media_interaction` | Mulai memutar video/embed |
-| `data_track` | Nama bebas dari atribut `data-track` di elemen `<a>` |
-
-### Event kustom
-
-Tempel `data-track` pada elemen `<a>` untuk mengirim event dengan nama sendiri:
-
-```html
-<a href="https://os.deepin.id" data-track="download_cta">Unduh deepin</a>
+```bash
+git clone https://github.com/deepin-Indonesia/about-site.git
+cd about-site
+npm install
+npm run dev        # → http://localhost:4321 (atau port berikutnya)
 ```
 
-Atau panggil dari script mana pun:
+### Perintah
 
-```js
-window.deepinTrack('os_select', { arch: 'arm64' });
-```
+| Perintah | Kegunaan |
+|---|---|
+| `npm run dev` | Server pengembangan |
+| `npm run build` | Build produksi ke `dist/` |
+| `npm run preview` | Preview hasil build |
 
-`window.__gaReady === true` menandakan pelacakan siap (berguna untuk pengujian).
-
-## Menambah / Memperbarui Konten
+## Mengubah Konten
 
 ### Halaman utama — `src/data/deepin-indonesia.ts`
 
-- `INDONESIA_PAGE` — judul, tagline, pengantar, dan tanggal pembaruan.
-- `INDONESIA_SUPPORT` — dukungan resmi dari deepin main community
-  (Wuhan Deepin Technology Co., Ltd.).
-- `INDONESIA_VALUES` — prinsip komunitas.
-- `INDONESIA_ACTIVITIES` — kegiatan komunitas beserta tautannya.
-- `EXPLORE_SECTIONS` — tiga kartu topik "Tentang deepin" (judul, deskripsi, ikon, URL, CTA).
-- `COMMUNITY_LEADS` — pengurus komunitas (nama, jabatan, badge, foto, bio, kutipan
-  Certificate of Appointment, tautan).
-- `INDONESIA_FAQ` — pertanyaan umum yang juga menjadi schema `FAQPage`.
+| Ekspor | Isi |
+|---|---|
+| `INDONESIA_PAGE` | Judul, tagline, pengantar, tanggal pembaruan |
+| `INDONESIA_SUPPORT` | Dukungan resmi dari deepin main community |
+| `INDONESIA_VALUES` | Prinsip komunitas |
+| `INDONESIA_ACTIVITIES` | Kegiatan komunitas + tautan |
+| `EXPLORE_SECTIONS` | Tiga kartu topik (`#original-apps`, `#desktop-environment`, `/product-planning/`) |
+| `COMMUNITY_LEADS` | Pengurus (nama, jabatan, badge, foto, bio, tautan) |
+| `INDONESIA_FAQ` | FAQ (juga jadi schema `FAQPage`) |
 
-> **Catatan ikon:** nilai `icon` pada array `links` harus menyertakan gaya Font Awesome
-> (`fas`/`fab`), mis. `fas fa-link` atau `fab fa-github`. Tanpa awalan gaya, ikon tidak
-> akan tampil. Pada `INDONESIA_VALUES`/`INDONESIA_ACTIVITIES`/`EXPLORE_SECTIONS`, awalan
-> `fas` ditambahkan otomatis oleh template.
+> Ikon pada `links` harus menyertakan gaya Font Awesome (`fas`/`fab`), mis. `fas fa-link` atau `fab fa-github`.
 
 ### Halaman product planning — `src/data/product-planning.ts`
 
-Semua konten roadmap berada di `src/data/product-planning.ts`:
+| Ekspor | Isi |
+|---|---|
+| `PLANNING_PAGE` | Judul, tagline, pengantar, tanggal pembaruan |
+| `RELEASE_SCHEDULE` | Jadwal rilis + status versi |
+| `NEXT_RELEASE` | Versi fokus halaman (hero & metadata) |
+| `PLAN_CATEGORIES` | Kategori fitur beserta item |
+| `PLAN_HIGHLIGHTS` | Chip sorotan di atas halaman |
+| `PLAN_DISCLAIMER` | Catatan penting |
+| `FAQ_ITEMS` | FAQ (juga jadi schema `FAQPage`) |
 
-- `RELEASE_SCHEDULE` — tabel jadwal rilis dan status versi.
-- `NEXT_RELEASE` — versi yang sedang direncanakan (dipakai di hero & metadata).
-- `PLAN_CATEGORIES` — kategori rencana fitur beserta itemnya.
-- `FAQ_ITEMS` — pertanyaan umum yang juga menjadi schema `FAQPage`.
+> Setiap kali konten berubah, perbarui tanggal di `CONTENT_UPDATED` (`astro.config.mjs`), `INDONESIA_PAGE.updated`, dan `PLANNING_PAGE.updated` agar `lastmod` sitemap dan schema tetap akurat.
 
-Perbarui juga `PLANNING_PAGE.updated` setiap kali konten berubah agar tanggal pada
-schema dan tampilan tetap akurat.
+## Deployment
+
+Push ke `main` → **Cloudflare Pages** otomatis build & deploy.
+
+| Setting | Nilai |
+|---|---|
+| Build command | `npm run build` |
+| Output directory | `dist` |
+| Production branch | `main` |
+
+## SEO, Performa & AdSense
+
+- **Meta per halaman**: description, keywords, canonical, `robots`, dan `hreflang` (`id-ID`, `x-default`).
+- **Open Graph & Twitter Card** dengan gambar 1200×630 (`/images/og-about.png`), `og:image:type`, dan dimensi sesuai.
+- **JSON-LD**: `Organization`, `WebSite`, `BreadcrumbList`, `AboutPage`, `ItemList`, `TechArticle`, `FAQPage`, `SoftwareApplication`.
+- **Sitemap** dengan `lastmod` per halaman (`CONTENT_UPDATED` di `astro.config.mjs`) + `robots.txt`.
+- **404** memakai `noindex, follow` tanpa `hreflang`.
+- **Performa**: `preconnect` ke cdnjs & GTM, `dns-prefetch` ke GA, `preload` gambar LCP (`preloadImage`), blur berat dikurangi.
+- **AdSense**: script + meta + `public/ads.txt`.
+- **Kebijakan Privasi** terpusat di **https://deepin.id/privacy/**; `/privacy/` di subdomain ini 301 ke sana.
+
+## Analitik
+
+Satu property GA4 (`G-2J4TLB9W7H`) untuk semua subdomain; setiap event membawa parameter `site`. Event penting: `nav_click`, `dropdown_toggle`, `anchor_click`, `cta_click`, `faq_toggle`, `scroll_depth`, `engaged_reader`.
+
+## Berkontribusi
+
+1. Fork repo, lalu buat branch dari `preview`: `git checkout preview && git checkout -b feat/deskripsi`.
+2. Commit dengan pesan jelas, push ke fork, dan buka **Pull Request** ke `deepin-Indonesia/about-site` (target: **`preview`**).
+3. Setelah review, merge `preview` → `main`.
+
+> ⚠️ Jangan push langsung ke `main` — branch itu otomatis tayang.
+
+## Lisensi
+
+Dirilis di bawah [MIT License](LICENSE) © deepin Indonesia.
+
+---
+
+<div align="center">
+
+Dibuat dengan ❤️ oleh komunitas [deepin Indonesia](https://deepin.id) · [Telegram](https://t.me/Linux_deepin_ID) · [GitHub](https://github.com/deepin-Indonesia)
+
+</div>
