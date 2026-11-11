@@ -12,12 +12,12 @@ import type { FaqItem, PlanCategory, ReleaseScheduleItem } from '@/types';
 export const PLANNING_PAGE = {
   title: 'Product Planning',
   headline: 'Product Planning deepin',
-  tagline: 'Roadmap versi & rencana fitur deepin',
+  tagline: 'Roadmap versi & fitur deepin 25.3.0',
   updated: '2026-11-11',
   intro:
-    'Agar pengguna komunitas selalu mendapat informasi terbaru mengenai roadmap versi Sistem Operasi deepin (selanjutnya disebut "deepin"), tim deepin mengumumkan rencana sasaran (planned objectives) untuk versi pre-release berikutnya sebelum versi tersebut diluncurkan.',
+    'Halaman ini merangkum roadmap versi deepin serta sasaran fitur deepin 25.3.0, yang telah dirilis pada November 2026. Ringkasan disusun dari sisi teknis (technical) dan fungsional (functional) agar pengguna komunitas mudah memahami arah pengembangan deepin.',
   introDetail:
-    'Detail perencanaan disampaikan dari sisi teknis (technical) dan fungsional (functional), sehingga siapa pun dapat memperoleh gambaran awal mengenai arah pengembangan deepin.',
+    'Setiap fitur dijelaskan dalam Bahasa Indonesia dengan istilah teknis tetap dalam Bahasa Inggris. Untuk daftar perubahan lengkap beserta perbaikannya, lihat release notes deepin 25.3.0 di news.deepin.id.',
 } as const;
 
 /** Halaman daftar release notes deepin di news.deepin.id. */
@@ -175,14 +175,14 @@ export const PLAN_HIGHLIGHTS = [
 
 /** Catatan penting / disclaimer resmi. */
 export const PLAN_DISCLAIMER =
-  'Rencana fitur inti yang diuraikan di atas dapat berbeda dari konten versi final. Untuk detail fitur, silakan merujuk ke release notes deepin yang akan diperbarui setelah versi resmi dirilis. Fitur baru dan item optimasi spesifik mengikuti release notes final.';
+  'deepin 25.3.0 telah dirilis pada November 2026. Ringkasan di atas adalah sasaran fitur yang menjadi dasar rilis tersebut; sebagian besar fitur sudah tersedia, sementara detail dan status akhir setiap fitur mengikuti release notes resmi deepin 25.3.0.';
 
 /** FAQ untuk rich result (FAQPage) sekaligus membantu pembaca. */
 export const FAQ_ITEMS: FaqItem[] = [
   {
     question: 'Apa itu Product Planning deepin?',
     answer:
-      'Product Planning adalah pengumuman resmi tim deepin mengenai rencana sasaran (planned objectives) untuk versi pre-release berikutnya. Rencana ini disampaikan dari sisi teknis dan fungsional agar pengguna komunitas mendapat gambaran awal arah pengembangan deepin.',
+      'Product Planning adalah halaman yang merangkum roadmap versi deepin beserta sasaran fitur versi terbaru. Ringkasan disampaikan dari sisi teknis dan fungsional agar pengguna komunitas mendapat gambaran arah pengembangan deepin.',
   },
   {
     question: 'Kapan deepin 25.3.0 dirilis?',
@@ -195,13 +195,13 @@ export const FAQ_ITEMS: FaqItem[] = [
       'Sepanjang 2026, deepin telah merilis deepin 25.1.0 (April 2026), deepin 25.2.0 (Juli 2026), dan deepin 25.3.0 (November 2026).',
   },
   {
-    question: 'Apakah rencana fitur deepin 25.3.0 pasti masuk ke versi final?',
+    question: 'Apakah semua fitur di halaman ini masuk ke deepin 25.3.0?',
     answer:
-      'Tidak selalu. Rencana fitur inti yang diumumkan dapat berbeda dari konten versi final. Detail fitur mengikuti release notes deepin yang diperbarui saat versi resmi dirilis, sehingga fitur dan item optimasi spesifik dapat berubah.',
+      'Tidak selalu. Halaman ini merangkum sasaran fitur deepin 25.3.0. Sebagian besar fitur telah tersedia di rilis resmi, namun detail dan status akhir setiap fitur mengikuti release notes deepin 25.3.0.',
   },
   {
     question: 'Di mana saya bisa membaca release notes deepin dalam Bahasa Indonesia?',
     answer:
-      'Release notes deepin tersedia di halaman berita komunitas deepin Indonesia pada kategori release-notes, dan akan diperbarui begitu versi resmi dirilis.',
+      'Release notes deepin tersedia di halaman berita komunitas deepin Indonesia pada kategori release-notes, termasuk release notes lengkap deepin 25.3.0.',
   },
 ];

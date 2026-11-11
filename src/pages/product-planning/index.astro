@@ -44,9 +44,9 @@ const totalFeatures = PLAN_CATEGORIES.reduce((sum, category) => sum + category.i
 const techArticleSchema = {
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
-  headline: 'Product Planning deepin — Roadmap Versi & Rencana Fitur deepin 25.3.0',
+  headline: 'Product Planning deepin — Fitur & Roadmap Versi deepin 25.3.0',
   description:
-    'Rencana pengembangan resmi deepin untuk versi berikutnya: jadwal rilis, pembaruan fitur, sistem & ekosistem, serta peningkatan kegunaan pada deepin 25.3.0.',
+    'Rangkuman roadmap versi deepin dan fitur utama deepin 25.3.0 yang telah dirilis pada November 2026: jadwal rilis, pembaruan fitur, sistem & ekosistem, serta peningkatan kegunaan.',
   inLanguage: 'id-ID',
   image: new URL('/images/deepin25/desktop.png', SITE.url).href,
   datePublished: PLANNING_PAGE.updated,
@@ -94,7 +94,7 @@ const softwareSchema = {
 
 <Layout
   title="Product Planning — Roadmap & Rencana Fitur deepin"
-  description="Product Planning resmi deepin: jadwal rilis deepin 25.1.0–25.3.0 plus rencana fitur UOS AI, System Manager, Immutable System, Linyaps, dan Treeland."
+  description="Product Planning resmi deepin: jadwal rilis deepin 25.1.0–25.3.0 serta fitur utama deepin 25.3.0 — UOS AI, System Manager, Immutable System, Linyaps, dan Treeland."
   image="/images/deepin25/desktop.png"
   imageWidth={1600}
   imageHeight={857}
@@ -158,7 +158,7 @@ const softwareSchema = {
               <i class="fas fa-calendar-days text-xs" /> Lihat Jadwal Rilis
             </a>
             <a href="#rencana-fitur" class="btn-outline text-sm px-6 py-3 !rounded-xl justify-center">
-              <i class="fas fa-list-check text-xs" /> Rencana Fitur
+              <i class="fas fa-list-check text-xs" /> Lihat Fitur
             </a>
           </div>
         </div>
@@ -193,7 +193,7 @@ const softwareSchema = {
                 <dd class="text-white font-semibold text-right">{PLAN_CATEGORIES.length} kategori</dd>
               </div>
               <div class="flex items-start justify-between gap-4">
-                <dt class="text-gray-400">Rencana Item</dt>
+                <dt class="text-gray-400">Item Fitur</dt>
                 <dd class="text-white font-semibold text-right">{totalFeatures} pembaruan</dd>
               </div>
             </dl>
@@ -327,15 +327,15 @@ const softwareSchema = {
     <div class="container-main">
       <div class="text-center mb-14 max-w-3xl mx-auto">
         <span class="section-eyebrow">
-          <i class="fas fa-list-check text-[10px]" aria-hidden="true" /> Version Plan
+          <i class="fas fa-list-check text-[10px]" aria-hidden="true" /> Feature Highlights
         </span>
         <h2 id="rencana-fitur-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900">
-          Rencana Versi <span class="text-deepin-600">{NEXT_RELEASE.version}</span>
+          Fitur <span class="text-deepin-600">{NEXT_RELEASE.version}</span>
         </h2>
         <p class="mt-4 text-gray-500 leading-relaxed">
-          Sasaran pengembangan disusun dalam tiga area: pembaruan fitur, sistem & ekosistem, serta
-          peningkatan kegunaan. Setiap poin menjaga istilah teknis dalam Bahasa Inggris agar konsisten
-          dengan dokumentasi resmi.
+          Fitur deepin 25.3.0 dikelompokkan dalam tiga area: pembaruan fitur, sistem & ekosistem,
+          serta peningkatan kegunaan. Setiap poin menjaga istilah teknis dalam Bahasa Inggris agar
+          konsisten dengan dokumentasi resmi.
         </p>
       </div>
 
@@ -438,8 +438,8 @@ const softwareSchema = {
         Ikuti Perkembangan <span class="text-deepin-300">deepin</span>
       </h2>
       <p class="text-deepin-200 text-base sm:text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-        Rencana di atas dapat berubah sebelum rilis final. Baca release notes resmi atau bergabung
-        dengan komunitas untuk mendapat kabar terbaru lebih dulu.
+        deepin 25.3.0 telah dirilis. Baca release notes resmi atau bergabung dengan komunitas untuk
+        mendapatkan kabar terbaru lebih dulu.
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href={RELEASE_NOTES_URL} target="_blank" rel="noopener" class="btn-primary text-base px-8 py-4 !rounded-xl !bg-white !text-deepin-700 hover:!bg-gray-100 w-full sm:w-auto justify-center">
